@@ -1,0 +1,56 @@
+Testing started!
+-------------------------------------
+Testing if occlusion works...
+It took 0.034900 ms
+It took 0.009900 ms
+It took 0.014900 ms
+It took 0.010500 ms
+It took 0.006200 ms
+It took 0.006000 ms
+It took 0.006200 ms
+It took 0.005800 ms
+It took 0.005800 ms
+It took 0.006500 ms
+Is Sound Source Occluded By Obstacle Tests passed: 10/10
+-------------------------------------
+Testing if Obstacle list works...
+It took 0.006500 ms
+It took 0.024300 ms
+It took 0.043900 ms
+It took 0.097900 ms
+If Obstacle List Works tests passed: 4/4
+-------------------------------------
+Testing if SoundSource list works...
+It took 0.014300 ms
+It took 0.023300 ms
+It took 0.041200 ms
+It took 0.117100 ms
+If SoundSource List Works tests passed: 4/4
+-------------------------------------
+Testing SetCurrentAttenuationOnSources method...
+It took 0.012700 ms
+It took 0.019200 ms
+It took 0.100800 ms
+It took 0.017600 ms
+It took 0.015400 ms
+If Set current attenuation on sources Works tests passed: 5/5
+-------------------------------------
+Testing loading and saving...
+It took 7.235000 ms
+It took 2.476800 ms
+Sources equal = 1001/70, obstacles equal = 600/600, receivers equal = 402/402
+test2 failed
+It took 23.662500 ms
+Sources equal = 103/70, obstacles equal = 60/60, receivers equal = 40/40
+test3 failed
+It took 14.878900 ms
+Sources equal = 1004/70, obstacles equal = 601/601, receivers equal = 402/402
+test4 failed
+It took 24.046101 ms
+Loading and Saving tests passed: 2/5
+ERROR: Test 2 not passed
+ERROR: Test 3 not passed
+ERROR: Test 4 not passed
+
+Mind the errors!
+End of testing!

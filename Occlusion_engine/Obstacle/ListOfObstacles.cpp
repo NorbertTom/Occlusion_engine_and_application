@@ -1,0 +1,94 @@
+#include "ListOfObstacles.h"
+#include "Obstacle.h"
+#include "ErrorLogging.h"
+
+ListOfObstacles* listOfObstaclesPtr = new ListOfObstacles();
+
+ListOfObstacles::ListOfObstacles()
+{
+#ifdef UsingNorMemoryPool
+	// reserve memory from pool
+#else
+	m_listOfPointers.reserve(10);
+#endif
+}
+
+ListOfObstacles::~ListOfObstacles()
+{
+	deleteAll();
+}
+
+Obstacle* ListOfObstacles::addObstacle(ObstacleDescriptor& obstacleDescriptor)
+{
+	obstacleDescriptor.m_id = m_nextId;
+#ifdef UsingNorMemoryPool
+	// allocation from pool
+#else
+	Obstacle* newObstacle = new Obstacle(obstacleDescriptor);
+#endif
+
+	m_listOfPointers.push_back(newObstacle);
+	m_nextId++;
+	m_obstaclesAmount++;
+	return newObstacle;
+}
+
+void ListOfObstacles::deleteObstacleById(int Id)
+{
+	int number = getListNrById(Id);
+	if (number == 2000000)
+	{
+		LOG_ERROR("Wrong ID provided in deleteObstacleById");
+	}
+	else
+	{
+		deleteObstacleByNr(number);
+	}
+}
+
+void ListOfObstacles::deleteObstacleByNr(int Nr)
+{
+#ifdef UsingNorMemoryPool
+	//release memory from pool
+#else
+	delete m_listOfPointers[Nr];
+#endif
+
+	auto it = m_listOfPointers.begin();
+	m_listOfPointers.erase(it + Nr);
+	m_obstaclesAmount--;
+}
+
+void ListOfObstacles::deleteAll()
+{
+	while (m_obstaclesAmount > 0)
+	{
+		deleteObstacleByNr(0);
+	}
+	m_nextId = 0;
+}
+
+Obstacle* ListOfObstacles::getPtrById(int Id) const
+{
+	for (int i = 0; i < m_obstaclesAmount; i++)
+	{
+		if (m_listOfPointers[i]->getId() == Id)
+		{
+			return m_listOfPointers[i];
+		}
+	}
+	return nullptr;
+}
+
+int ListOfObstacles::getListNrById(int Id) const
+{
+	for (int i = 0; i < m_obstaclesAmount; i++)
+	{
+		if (m_listOfPointers[i]->getId() == Id)
+		{
+			return i;
+		}
+	}
+	LOG_WARNING("Didn't find object by ID in ListOfObstacles::getListNrById!");
+	return 2000000;
+}

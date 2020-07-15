@@ -1,0 +1,33 @@
+[INFO]: Application started
+[INFO]: 
+--------------------------------
+Testing started
+[INFO]: Saved succesfully!
+[INFO]: Loading data from file
+[INFO]: Sources loaded succesfully
+[INFO]: Obstacles loaded succesfully
+[INFO]: Receivers loaded succesfully
+[INFO]: Saved succesfully!
+[INFO]: Loading data from file
+[INFO]: Sources loaded succesfully
+[INFO]: Obstacles loaded succesfully
+[INFO]: Receivers loaded succesfully
+[INFO]: Saved succesfully!
+[INFO]: Loading data from file
+[INFO]: Sources loaded succesfully
+[INFO]: Obstacles loaded succesfully
+[INFO]: Receivers loaded succesfully
+[INFO]: Saved succesfully!
+[INFO]: Loading data from file
+[INFO]: Sources loaded succesfully
+[INFO]: Obstacles loaded succesfully
+[INFO]: Receivers loaded succesfully
+[INFO]: Saved succesfully!
+[INFO]: Loading data from file
+[INFO]: Sources loaded succesfully
+[INFO]: Obstacles loaded succesfully
+[INFO]: Receivers loaded succesfully
+[WARNING]: Mind the errors in tests!
+[INFO]: 
+End of testing
+--------------------------------
