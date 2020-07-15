@@ -100,7 +100,14 @@ Receiver* ListOfReceivers::getActive() const
 
 Receiver* ListOfReceivers::operator[](int Nr) const
 {
-	return m_listOfPointers[Nr];
+	if (Nr < m_receiversAmount)
+	{
+		return m_listOfPointers[Nr];
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 int ListOfReceivers::getReceiversAmount() const
@@ -123,7 +130,14 @@ int ListOfReceivers::getListNrById(int Id) const
 
 Receiver* ListOfReceivers::getPtrByNr(int Nr) const
 {
-	return m_listOfPointers[Nr];
+	if (Nr < m_receiversAmount)
+	{
+		return m_listOfPointers[Nr];
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 Receiver* ListOfReceivers::getPtrById(int id) const
@@ -140,8 +154,11 @@ Receiver* ListOfReceivers::getPtrById(int id) const
 
 void ListOfReceivers::activate(int nr) const
 {
-	deactivateAll();
-	m_listOfPointers[nr]->activate();
+	if (nr < m_receiversAmount)
+	{
+		deactivateAll();
+		m_listOfPointers[nr]->activate();
+	}
 }
 
 void ListOfReceivers::activateById(int id) const

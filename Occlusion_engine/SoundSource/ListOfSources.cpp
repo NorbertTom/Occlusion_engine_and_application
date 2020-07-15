@@ -60,7 +60,7 @@ void ListOfSources::deleteSourceById(int Id)
 	}
 }
 
-void ListOfSources::deleteSourceByNr(int Nr)
+void ListOfSources::deleteSourceByNr(int Nr) //should be crash proofed if (Nr < m_sourcesAmount) or smth
 {
 #ifdef UsingNorMemoryPool
 	sourcesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);

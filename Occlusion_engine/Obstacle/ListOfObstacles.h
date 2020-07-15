@@ -17,8 +17,8 @@ public:
 	void deleteAll() override;
 	
 	Obstacle* getPtrById(int Id) const override;
-	Obstacle* getPtrByNr(int Nr) const override { return m_listOfPointers[Nr]; };
-	Obstacle* operator[] (int Nr) const override { return m_listOfPointers[Nr]; };
+	Obstacle* getPtrByNr(int Nr) const override;
+	Obstacle* operator[] (int Nr) const override;
 	
 	int getObstaclesAmount() const override { return m_obstaclesAmount; };
 

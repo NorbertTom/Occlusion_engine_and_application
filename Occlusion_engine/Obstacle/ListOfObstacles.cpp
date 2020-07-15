@@ -46,6 +46,18 @@ void ListOfObstacles::deleteObstacleById(int Id)
 	}
 }
 
+Obstacle* ListOfObstacles::getPtrByNr(int Nr) const
+{ 
+	if (Nr < m_obstaclesAmount)
+	{
+		return m_listOfPointers[Nr];
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
 void ListOfObstacles::deleteObstacleByNr(int Nr)
 {
 #ifdef UsingNorMemoryPool
@@ -91,4 +103,16 @@ int ListOfObstacles::getListNrById(int Id) const
 	}
 	LOG_WARNING("Didn't find object by ID in ListOfObstacles::getListNrById!");
 	return 2000000;
+}
+
+Obstacle* ListOfObstacles::operator[] (int Nr) const
+{
+	if (Nr < m_obstaclesAmount)
+	{
+		return m_listOfPointers[Nr];
+	}
+	else
+	{
+		return nullptr;
+	}
 }
