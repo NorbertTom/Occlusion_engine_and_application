@@ -85,11 +85,14 @@ namespace Tests
 
 			TestObstacle operator= (Obstacle& const obstacle)
 			{
-				x1 = obstacle.getPosX1();
-				y1 = obstacle.getPosY1();
-				x2 = obstacle.getPosX2();
-				y2 = obstacle.getPosY2();
-				dampening = obstacle.getDampening();
+				if (&obstacle)
+				{
+					x1 = obstacle.getPosX1();
+					y1 = obstacle.getPosY1();
+					x2 = obstacle.getPosX2();
+					y2 = obstacle.getPosY2();
+					dampening = obstacle.getDampening();
+				}
 				return *this;
 			}
 
@@ -127,9 +130,12 @@ namespace Tests
 
 			TestReceiver operator= (Receiver& const receiver)
 			{
-				x = receiver.getPosX();
-				y = receiver.getPosY();
-				isActive = receiver.ifActive();
+				if (&receiver)
+				{
+					x = receiver.getPosX();
+					y = receiver.getPosY();
+					isActive = receiver.ifActive();
+				}
 				return *this;
 			}
 

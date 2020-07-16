@@ -1,7 +1,7 @@
 #include "NorMemoryPool.h"
 #include <memory>
 
-NorMemoryPool* norMemoryPool = new NorMemoryPool(5000);
+NorMemoryPool* norMemoryPool = new NorMemoryPool(50000);
 
 NorMemoryPool::NorMemoryPool(const unsigned int memoryAmount)
 {

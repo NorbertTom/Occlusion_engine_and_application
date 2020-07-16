@@ -2,7 +2,14 @@
 #include "Obstacle.h"
 #include "ErrorLogging.h"
 
+#include "NorMemoryPool.h"
+#include "NorMemoryPoolChunk.h"
+
 ListOfObstacles* listOfObstaclesPtr = new ListOfObstacles();
+
+#ifdef UsingNorMemoryPool
+NorMemoryPoolChunk* obstaclesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Obstacle), 50); // ?? test fails because of 50 limit
+#endif
 
 ListOfObstacles::ListOfObstacles()
 {
@@ -21,8 +28,15 @@ ListOfObstacles::~ListOfObstacles()
 Obstacle* ListOfObstacles::addObstacle(ObstacleDescriptor& obstacleDescriptor)
 {
 	obstacleDescriptor.m_id = m_nextId;
+
 #ifdef UsingNorMemoryPool
-	// allocation from pool
+	Obstacle newObstacleStack(obstacleDescriptor);
+	auto allocator = obstaclesMemoryPool->addToPool(&newObstacleStack);
+	if (!allocator)
+	{
+		return nullptr;
+	}
+	Obstacle* newObstacle = reinterpret_cast<Obstacle*>(allocator); 
 #else
 	Obstacle* newObstacle = new Obstacle(obstacleDescriptor);
 #endif
@@ -46,22 +60,10 @@ void ListOfObstacles::deleteObstacleById(int Id)
 	}
 }
 
-Obstacle* ListOfObstacles::getPtrByNr(int Nr) const
-{ 
-	if (Nr < m_obstaclesAmount)
-	{
-		return m_listOfPointers[Nr];
-	}
-	else
-	{
-		return nullptr;
-	}
-}
-
-void ListOfObstacles::deleteObstacleByNr(int Nr)
+void ListOfObstacles::deleteObstacleByNr(int Nr) // nr should be crash proof here
 {
 #ifdef UsingNorMemoryPool
-	//release memory from pool
+	obstaclesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
 	delete m_listOfPointers[Nr];
 #endif
@@ -78,6 +80,18 @@ void ListOfObstacles::deleteAll()
 		deleteObstacleByNr(0);
 	}
 	m_nextId = 0;
+}
+
+Obstacle* ListOfObstacles::getPtrByNr(int Nr) const
+{ 
+	if (Nr < m_obstaclesAmount)
+	{
+		return m_listOfPointers[Nr];
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 Obstacle* ListOfObstacles::getPtrById(int Id) const
