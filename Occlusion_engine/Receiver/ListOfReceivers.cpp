@@ -2,7 +2,15 @@
 #include "Receiver.h"
 #include "ErrorLogging.h"
 
+//#include "NorMemoryPool.h"
+//#include "NorMemoryPoolChunk.h" <- Not working for some reason with these on; listOfReceiversPtr is Null; why?
+
 ListOfReceivers* listOfReceiversPtr = new ListOfReceivers();
+
+#ifdef UsingNorMemoryPool
+NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20); // ?? test fails because of 50 limit
+#endif
+
 
 ListOfReceivers::ListOfReceivers()
 {
@@ -23,15 +31,22 @@ Receiver* ListOfReceivers::createReceiver(float X, float Y)
 	deactivateAll();
 
 #ifdef UsingNorMemoryPool
-	// NorMemoryPoolChunkAllocation
-#else // use standard heap allocation
-	Receiver* newReceiverPtr = new Receiver(X, Y, m_nextId);
+	Receiver newReceiverStack(X, Y, m_nextId);
+	auto allocator = receiversMemoryPool->addToPool(&newReceiverStack);
+	if (!allocator)
+	{
+		return nullptr;
+	}
+	Receiver* newReceiver = reinterpret_cast<Receiver*>(allocator);
+
+#else 
+	Receiver* newReceiver = new Receiver(X, Y, m_nextId);
 #endif
 
-	m_listOfPointers.push_back(newReceiverPtr);
+	m_listOfPointers.push_back(newReceiver);
 	m_nextId++;
 	m_receiversAmount++;
-	return newReceiverPtr;
+	return newReceiver;
 }
 
 void ListOfReceivers::deleteReceiverById(int Id)
@@ -48,7 +63,7 @@ void ListOfReceivers::deleteReceiverById(int Id)
 void ListOfReceivers::deleteReceiverByNr(int Nr)
 {
 #ifdef UsingNorMemoryPool
-	// release memory from pool
+	receiversMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
 	delete m_listOfPointers[Nr];
 #endif
