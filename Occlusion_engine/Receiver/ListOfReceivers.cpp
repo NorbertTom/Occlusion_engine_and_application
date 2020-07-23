@@ -2,13 +2,13 @@
 #include "Receiver.h"
 #include "ErrorLogging.h"
 
-//#include "NorMemoryPool.h"
-//#include "NorMemoryPoolChunk.h" <- Not working for some reason with these on; listOfReceiversPtr is Null; why?
+#include "NorMemoryPool.h"
+#include "NorMemoryPoolChunk.h"
 
 ListOfReceivers* listOfReceiversPtr = new ListOfReceivers();
 
 #ifdef UsingNorMemoryPool
-NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20); // ?? test fails because of 50 limit
+NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20); // ?? test fails because of 20 limit
 #endif
 
 

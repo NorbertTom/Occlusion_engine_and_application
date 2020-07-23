@@ -28,5 +28,7 @@ namespace SoundEngineInitializer
 		delete listOfObstaclesPtr;
 		delete listOfSourcesPtr;
 		delete loadingData;
+		delete norMemoryPool;
+		// deal with leaks!
 	}
 }

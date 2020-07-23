@@ -17,6 +17,7 @@ NorMemoryPoolChunk::NorMemoryPoolChunk(NorMemoryPool* memoryPool, const unsigned
 
 NorMemoryPoolChunk::~NorMemoryPoolChunk()
 {
+	delete[] m_isSlotFree;
 }
 
 void* NorMemoryPoolChunk::addToPool(void* data)
