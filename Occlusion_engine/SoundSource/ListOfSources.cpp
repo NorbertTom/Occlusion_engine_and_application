@@ -23,6 +23,10 @@ ListOfSources::ListOfSources()
 ListOfSources::~ListOfSources()
 {
 	deleteAll();
+
+#ifdef UsingNorMemoryPool
+	delete sourcesMemoryPool;
+#endif
 }
 
 SoundSource* ListOfSources::addSource(SoundSourceDescriptor &soundSourceDescriptor)

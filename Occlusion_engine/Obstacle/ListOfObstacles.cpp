@@ -23,6 +23,10 @@ ListOfObstacles::ListOfObstacles()
 ListOfObstacles::~ListOfObstacles()
 {
 	deleteAll();
+
+#ifdef UsingNorMemoryPool
+	delete obstaclesMemoryPool;
+#endif
 }
 
 Obstacle* ListOfObstacles::addObstacle(ObstacleDescriptor& obstacleDescriptor)

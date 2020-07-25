@@ -24,6 +24,10 @@ ListOfReceivers::ListOfReceivers()
 ListOfReceivers::~ListOfReceivers()
 {
 	deleteAll();
+
+#ifdef UsingNorMemoryPool
+	delete receiversMemoryPool;
+#endif
 }
 
 Receiver* ListOfReceivers::createReceiver(float X, float Y)
