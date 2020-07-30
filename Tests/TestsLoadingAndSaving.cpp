@@ -260,7 +260,7 @@ namespace Tests
 		bool test1(int& failCounter)
 		{
 			BasicMath::Timer timer;
-			bool result = ifRandomNrOfObjectsEqual(10, 6, 4, false);
+			bool result = ifRandomNrOfObjectsEqual(10, 6, 4, false, true);
 			if (!result)
 			{
 				PrintErrorLogToFile("test1 failed");
@@ -272,7 +272,7 @@ namespace Tests
 		bool test2(int& failCounter)
 		{
 			BasicMath::Timer timer;
-			bool result = ifRandomNrOfObjectsEqual(1000, 600, 400, false);
+			bool result = ifRandomNrOfObjectsEqual(31, 19, 11, false, true);
 			if (!result)
 			{
 				PrintErrorLogToFile("test2 failed");
@@ -284,7 +284,7 @@ namespace Tests
 		bool test3(int& failCounter)
 		{
 			BasicMath::Timer timer;
-			bool result = ifRandomNrOfObjectsEqual(100, 60, 40, true);
+			bool result = ifRandomNrOfObjectsEqual(50, 40, 15, true, true);
 			if (!result)
 			{
 				PrintErrorLogToFile("test3 failed");
@@ -296,7 +296,7 @@ namespace Tests
 		bool test4(int& failCounter)
 		{
 			BasicMath::Timer timer;
-			bool result = ifRandomNrOfObjectsEqual(1000, 600, 400, true);
+			bool result = ifRandomNrOfObjectsEqual(70, 50, 20, true, false); // do not randomize as it's a test for max capacity
 			if (!result)
 			{
 				PrintErrorLogToFile("test4 failed");
@@ -335,10 +335,10 @@ namespace Tests
 			return failCounter;
 		}
 
-		bool ifRandomNrOfObjectsEqual(int nrOfSourcesMin, int nrOfObstaclesMin, int nrOfReceiversMin, bool testPostUpdate)
+		bool ifRandomNrOfObjectsEqual(int nrOfSourcesMax, int nrOfObstaclesMax, int nrOfReceiversMax, bool testPostUpdate, bool randomize)
 		{
 			bool result = false;
-			int randomNrOfSources = nrOfSourcesMin + rand() % 5;
+			int randomNrOfSources = randomize ? nrOfSourcesMax - rand() % 5 : nrOfSourcesMax;
 			std::vector<SoundSource*> source(randomNrOfSources);
 			std::vector<TestSoundSource> testSourcePreSave(randomNrOfSources);
 			for (int i = 0; i < randomNrOfSources; i++)
@@ -352,7 +352,7 @@ namespace Tests
 				SoundSourceDescriptor sourceDescriptor(randX, randY, randLwa, randMaxDistance, randIsOccludable, randAttenuationType);
 				source[i] = listOfSourcesPtr->addSource(sourceDescriptor);
 			}
-			int randomNrOfObstacles = nrOfObstaclesMin + rand() % 3;
+			int randomNrOfObstacles = randomize ? nrOfObstaclesMax - rand() % 3 : nrOfObstaclesMax;
 			std::vector<Obstacle*> obstacle(randomNrOfObstacles);
 			std::vector<TestObstacle> testObstaclePreSave(randomNrOfObstacles);
 			for (int i = 0; i < randomNrOfObstacles; i++)
@@ -366,7 +366,7 @@ namespace Tests
 				obstacle[i] = listOfObstaclesPtr->addObstacle(obstacleDescriptor);
 			}
 
-			int randomNrOfReceivers = nrOfReceiversMin + rand() % 4;
+			int randomNrOfReceivers = randomize ? nrOfReceiversMax - rand() % 4 : nrOfReceiversMax;
 			std::vector<Receiver*> receiver(randomNrOfReceivers);
 			std::vector<TestReceiver> testReceiverPreSave(randomNrOfReceivers);
 			for (int i = 0; i < randomNrOfReceivers; i++)

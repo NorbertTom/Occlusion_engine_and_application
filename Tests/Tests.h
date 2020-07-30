@@ -52,7 +52,7 @@ namespace Tests {
 
 		int testMain();
 
-		bool ifRandomNrOfObjectsEqual(int nrOfSourcesMin, int nrOfObstaclesMin, int nrOfReceiversMin, bool testPostUpdate);
+		bool ifRandomNrOfObjectsEqual(int nrOfSourcesMin, int nrOfObstaclesMin, int nrOfReceiversMin, bool testPostUpdate, bool randomize);
 
 
 	}
