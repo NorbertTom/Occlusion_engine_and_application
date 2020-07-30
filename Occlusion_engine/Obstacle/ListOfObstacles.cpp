@@ -8,7 +8,7 @@
 ListOfObstacles* listOfObstaclesPtr = new ListOfObstacles();
 
 #ifdef UsingNorMemoryPool
-NorMemoryPoolChunk* obstaclesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Obstacle), 50); // ?? test fails because of 50 limit
+NorMemoryPoolChunk* obstaclesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Obstacle), 50); // test fails because of 50 limit
 #endif
 
 ListOfObstacles::ListOfObstacles()

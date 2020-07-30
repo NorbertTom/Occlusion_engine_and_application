@@ -13,11 +13,13 @@ public:
 	~NorMemoryPool();
 
 	void* getNextFreeAddress() const { return m_nextFreeAddress; }
+	static const int c_bytesCapacity = 6000;
 
 private:
 	void* m_startAddress = nullptr;
 	void* m_endAddress = nullptr;
 	void* m_nextFreeAddress = nullptr;
+	unsigned int m_bytesReserved = 0;
 };
 
 extern NorMemoryPool* norMemoryPool;

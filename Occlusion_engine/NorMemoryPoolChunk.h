@@ -14,6 +14,9 @@ public:
 private:
 	const unsigned int c_bytesPerObject;
 	const unsigned int c_quantity;
+	const unsigned int c_bytesTotal;
+	unsigned int m_bytesUsed = 0;
+
 	void* c_chunkStartPtr = nullptr;
 	inline void* chunkEndPtr() { return reinterpret_cast<char*>(c_chunkStartPtr) + (c_bytesPerObject * c_quantity); }
 	bool* m_isSlotFree; // table of booleans

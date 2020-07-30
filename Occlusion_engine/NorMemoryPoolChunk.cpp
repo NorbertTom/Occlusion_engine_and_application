@@ -3,9 +3,9 @@
 #include "NorMemoryPool.h"
 
 NorMemoryPoolChunk::NorMemoryPoolChunk(NorMemoryPool* memoryPool, const unsigned int BytesPerObject, const unsigned int Quantity)
-	: c_bytesPerObject(BytesPerObject), c_quantity(Quantity)
+	: c_bytesPerObject(BytesPerObject), c_quantity(Quantity), c_bytesTotal(BytesPerObject*Quantity)
 {
-	c_chunkStartPtr = memoryPool->reserveMemory(c_bytesPerObject*c_quantity);
+	c_chunkStartPtr = memoryPool->reserveMemory(c_bytesTotal);
 
 	m_isSlotFree = new bool[c_quantity];
 	for (unsigned int i = 0; i < c_quantity; i++)
@@ -27,6 +27,7 @@ void* NorMemoryPoolChunk::addToPool(void* data)
 	{
 		memcpy(destinationPtr, data, c_bytesPerObject);
 		m_isSlotFree[position] = false;
+		m_bytesUsed = m_bytesUsed + c_bytesPerObject;
 		return destinationPtr;
 	}
 	else
@@ -42,6 +43,7 @@ bool NorMemoryPoolChunk::deleteFromPool(void* ptr)
 		if (getSlotPtr(i) == ptr)
 		{
 			m_isSlotFree[i] = true;
+			m_bytesUsed = m_bytesUsed - c_bytesPerObject;
 			return true;
 		}
 	}

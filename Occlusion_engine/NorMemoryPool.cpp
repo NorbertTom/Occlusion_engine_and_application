@@ -1,7 +1,7 @@
 #include "NorMemoryPool.h"
 #include <memory>
 
-NorMemoryPool* norMemoryPool = new NorMemoryPool(50000);
+NorMemoryPool* norMemoryPool = new NorMemoryPool(NorMemoryPool::c_bytesCapacity);
 
 NorMemoryPool::NorMemoryPool(const unsigned int memoryAmount)
 {
@@ -31,5 +31,6 @@ void* NorMemoryPool::reserveMemory(const unsigned int memoryAmount)
 	}
 	pointerToReturn = m_nextFreeAddress;
 	m_nextFreeAddress = reinterpret_cast<char*>(m_nextFreeAddress) + memoryAmount;
+	m_bytesReserved = m_bytesReserved + memoryAmount;
 	return pointerToReturn;
 }

@@ -8,7 +8,7 @@
 ListOfReceivers* listOfReceiversPtr = new ListOfReceivers();
 
 #ifdef UsingNorMemoryPool
-NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20); // ?? test fails because of 20 limit
+NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20); // test fails because of 20 limit
 #endif
 
 

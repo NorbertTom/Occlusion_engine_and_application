@@ -8,7 +8,7 @@
 ListOfSources* listOfSourcesPtr = new ListOfSources();
 
 #ifdef UsingNorMemoryPool
-NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70); // ?? test fails because of 70 limit
+NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70); // test fails because of 70 limit
 #endif
 
 ListOfSources::ListOfSources()
