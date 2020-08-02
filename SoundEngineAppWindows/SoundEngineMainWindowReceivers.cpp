@@ -29,7 +29,6 @@ void SoundEngineMainWindow::onUIlistOfReceiversDeselect(wxListEvent& event)
 void SoundEngineMainWindow::onButtonClickedReceiverAdd(wxCommandEvent & event)
 {
 	PopupReceiver* popupReceiver = new PopupReceiver(this, "Add");
-	popupReceiver->Show();
 	event.Skip();
 }
 
@@ -44,7 +43,6 @@ void SoundEngineMainWindow::onButtonClickedReceiverEdit(wxCommandEvent & event)
 		receiverPtr->getPosY(),
 		receiverPtr->ifActive());
 	PopupReceiver* popupReceiver = new PopupReceiver(this, "Edit", receiverDetails);
-	popupReceiver->Show();
 	event.Skip();
 }
 

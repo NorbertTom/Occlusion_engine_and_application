@@ -22,6 +22,9 @@ PopupReceiver::PopupReceiver(wxWindow* parent, std::string mode, ReceiverDetails
 	coordPointYtxt = new wxStaticText(this, wxID_ANY, "y [m]:", wxPoint(130, 15), wxSize(60, 20));
 	isActivetxt = new wxStaticText(this, wxID_ANY, "isActive:", wxPoint(260, 15), wxSize(60, 20));
 
+	std::string countText = "Receivers status = " + std::to_string(listOfReceiversPtr->getReceiversAmount()) + " / " + std::to_string(listOfReceiversPtr->getReceiversAmountLimit());
+	txtCountStatus = new wxStaticText(this, wxID_ANY, countText, wxPoint(10, 70), wxSize(130, 20));
+
 	coordPointXInput = new wxTextCtrl(this, 1, wxEmptyString, wxPoint(60, 10), wxSize(60, 30));
 	coordPointYInput = new wxTextCtrl(this, 2, wxEmptyString, wxPoint(190, 10), wxSize(60, 30));
 	wxArrayString choice;
@@ -45,11 +48,19 @@ PopupReceiver::PopupReceiver(wxWindow* parent, std::string mode, ReceiverDetails
 	{
 		fillWithReceiverDetails(receiverDetails);
 	}
+	this->Show();
 }
 
 PopupReceiver::PopupReceiver(wxWindow* parent, std::string mode)
 	: PopupReceiver(parent, mode, ReceiverDetails())
-{}
+{
+	if (listOfReceiversPtr->getReceiversAmount() == listOfReceiversPtr->getReceiversAmountLimit() && mode == "Add")
+	{
+		m_focusOnMain = false;
+		this->Close();
+		PopupWindowSmall* errorWindow = new PopupWindowSmall(parent, "Error!", "Cannot add any more receivers, memory full");
+	}
+}
 
 PopupReceiver::~PopupReceiver()
 {

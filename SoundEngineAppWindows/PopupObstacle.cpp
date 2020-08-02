@@ -23,6 +23,9 @@ PopupObstacle::PopupObstacle(wxWindow* parent, std::string mode, ObstacleDetails
 	coordPointY2 = new wxStaticText(this, wxID_ANY, "y2 [m]:", wxPoint(390, 15), wxSize(60, 20));
 	dampening = new wxStaticText(this, wxID_ANY, "dampening [dB]:", wxPoint(520, 15), wxSize(120, 20));
 
+	std::string countText = "Obstacles status = " + std::to_string(listOfObstaclesPtr->getObstaclesAmount()) + " / " + std::to_string(listOfObstaclesPtr->getObstaclesAmountLimit());
+	txtCountStatus = new wxStaticText(this, wxID_ANY, countText, wxPoint(10, 70), wxSize(130, 20));
+
 	coordPointX1Input = new wxTextCtrl(this, 1, wxEmptyString, wxPoint(60,10), wxSize(60,30));
 	coordPointY1Input = new wxTextCtrl(this, 2, wxEmptyString, wxPoint(190,10), wxSize(60,30));
 	coordPointX2Input = new wxTextCtrl(this, 3, wxEmptyString, wxPoint(320,10), wxSize(60,30));
@@ -36,17 +39,32 @@ PopupObstacle::PopupObstacle(wxWindow* parent, std::string mode, ObstacleDetails
 	if (!obstacleDetails.isEmpty)
 	{
 		fillWithObstacleDetails(obstacleDetails);
-	}	
+	}
+	this->Show();
 }
 
 PopupObstacle::PopupObstacle(wxWindow* parent, std::string mode)
 	: PopupObstacle(parent, mode, ObstacleDetails())
-{}
+{
+	if (listOfObstaclesPtr->getObstaclesAmount() == listOfObstaclesPtr->getObstaclesAmountLimit() && mode == "Add")
+	{
+		m_shouldFocusOnMainWindow = false;
+		this->Close();
+		PopupWindowSmall* errorWindow = new PopupWindowSmall(parent, "Error!", "Cannot add any more obstacles, memory full");
+	}
+}
 
 PopupObstacle::~PopupObstacle()
 {
-	m_parentWindow->Enable();
-	m_parentWindow->SetFocus();
+	if (m_shouldFocusOnMainWindow)
+	{
+		m_parentWindow->Enable();
+		m_parentWindow->SetFocus();
+	}
+	else
+	{
+		//Popup window small will take care of that
+	}
 }
 
 void PopupObstacle::onButtonOkClicked(wxCommandEvent& event)

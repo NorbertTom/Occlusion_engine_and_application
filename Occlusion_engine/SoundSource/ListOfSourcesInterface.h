@@ -16,5 +16,6 @@ public:
 	virtual SoundSource* getPtrByNr(int Nr) const = 0;
 	virtual SoundSource* operator[] (int Nr) const = 0;
 
-	virtual int getSourcesAmount() const = 0;
+	virtual unsigned int getSourcesAmount() const = 0;
+	virtual unsigned int getSourcesAmountLimit() const = 0;
 };

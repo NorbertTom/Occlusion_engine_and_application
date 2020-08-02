@@ -22,7 +22,8 @@ public:
 	int getListNrById(int Id) const;
 	Receiver* operator[](int Nr) const override;
 
-	int getReceiversAmount() const override;
+	unsigned int getReceiversAmount() const override { return m_receiversAmount; }
+	unsigned int getReceiversAmountLimit() const override {	return m_receiversAmountLimit; }
 
 	ListOfReceivers();
 	~ListOfReceivers();
@@ -30,8 +31,8 @@ public:
 private:
 	std::vector<Receiver*> m_listOfPointers;
 	int m_nextId = 0;
-	int m_receiversAmount = 0;
-
+	unsigned int m_receiversAmount = 0;
+	const unsigned int m_receiversAmountLimit;
 };
 
 extern SOUND_API ListOfReceivers* listOfReceiversPtr;

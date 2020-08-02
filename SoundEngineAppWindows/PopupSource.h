@@ -36,6 +36,7 @@ public:
 	wxStaticText* txtMaxDistance = nullptr;
 	wxStaticText* txtIsOccludable = nullptr;
 	wxStaticText* txtAttenuationType = nullptr;
+	wxStaticText* txtCountStatus = nullptr;
 
 	wxTextCtrl* posXInput = nullptr;
 	wxTextCtrl* posYInput = nullptr;
@@ -58,4 +59,5 @@ private:
 	wxWindow* m_parentWindow = nullptr;
 	std::string m_windowMode;
 	SoundSource* m_source;
+	bool m_shouldAutomaticallyFocusOnParentWindow = true;
 };

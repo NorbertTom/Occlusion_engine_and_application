@@ -30,6 +30,8 @@ public:
 	wxStaticText* coordPointYtxt = nullptr;
 	wxStaticText* isActivetxt = nullptr;
 
+	wxStaticText* txtCountStatus = nullptr;
+
 	wxTextCtrl* coordPointXInput = nullptr;
 	wxTextCtrl* coordPointYInput = nullptr;
 	wxChoice* isActiveInput = nullptr;

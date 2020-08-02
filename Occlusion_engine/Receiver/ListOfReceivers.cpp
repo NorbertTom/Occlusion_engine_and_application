@@ -2,17 +2,20 @@
 #include "Receiver.h"
 #include "ErrorLogging.h"
 
-#include "NorMemoryPool.h"
-#include "NorMemoryPoolChunk.h"
+#define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
+
+#ifdef UsingNorMemoryPool
+	#include "NorMemoryPool.h"
+	#include "NorMemoryPoolChunk.h"
+	NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20);
+	static const int limit = 20;
+#else
+	static const int limit = 1000;
+#endif
 
 ListOfReceivers* listOfReceiversPtr = new ListOfReceivers();
 
-#ifdef UsingNorMemoryPool
-NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20); // test fails because of 20 limit
-#endif
-
-
-ListOfReceivers::ListOfReceivers()
+ListOfReceivers::ListOfReceivers() : m_receiversAmountLimit(limit)
 {
 #ifdef UsingNorMemoryPool
 	// ----
@@ -127,11 +130,6 @@ Receiver* ListOfReceivers::operator[](int Nr) const
 	{
 		return nullptr;
 	}
-}
-
-int ListOfReceivers::getReceiversAmount() const
-{
-	return m_receiversAmount;
 }
 
 int ListOfReceivers::getListNrById(int Id) const

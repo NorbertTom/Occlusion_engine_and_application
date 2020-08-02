@@ -15,14 +15,17 @@ public:
 	SoundSource* getPtrByNr(int Nr) const override;
 	SoundSource* operator[] (int Nr) const override;
 
-	int getSourcesAmount() const override { return m_sourcesAmount; }
+	unsigned int getSourcesAmount() const override { return m_sourcesAmount; }
+	unsigned int getSourcesAmountLimit() const override { return m_sourcesAmountLimit; }
+
 	ListOfSources();
 	~ListOfSources();
 
 private:
 	std::vector<SoundSource*> m_listOfPointers;
 	int m_nextId = 0;
-	int m_sourcesAmount = 0;
+	unsigned int m_sourcesAmount = 0;
+	const unsigned int m_sourcesAmountLimit;
 
 	int getListNrById(int Id) const;
 };

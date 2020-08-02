@@ -30,6 +30,8 @@ public:
 	wxStaticText* coordPointX2 = nullptr;
 	wxStaticText* coordPointY2 = nullptr;
 	wxStaticText* dampening = nullptr;
+	
+	wxStaticText* txtCountStatus = nullptr;
 
 	wxTextCtrl* coordPointX1Input = nullptr;
 	wxTextCtrl* coordPointY1Input = nullptr;
@@ -51,5 +53,6 @@ private:
 	wxWindow* m_parentWindow = nullptr;
 	std::string m_windowMode;
 	Obstacle* m_obstacle;
+	bool m_shouldFocusOnMainWindow = true;
 };
 

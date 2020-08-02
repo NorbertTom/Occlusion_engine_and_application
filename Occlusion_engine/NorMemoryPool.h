@@ -1,7 +1,5 @@
 #pragma once
 
-#define UsingNorMemoryPool
-
 class NorMemoryPoolChunk;
 
 class NorMemoryPool

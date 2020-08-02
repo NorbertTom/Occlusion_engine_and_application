@@ -15,6 +15,7 @@ public:
 	virtual Receiver* getPtrByNr(int Nr) const = 0;
 	virtual Receiver* operator[](int Nr) const = 0;
 
-	virtual int getReceiversAmount() const = 0;
+	virtual unsigned int getReceiversAmount() const = 0;
+	virtual unsigned int getReceiversAmountLimit() const = 0;
 
 };

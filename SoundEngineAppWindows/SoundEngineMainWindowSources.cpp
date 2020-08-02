@@ -30,7 +30,6 @@ void SoundEngineMainWindow::onUIlistOfSourcesDeselect(wxListEvent& event)
 void SoundEngineMainWindow::onButtonClickedSourceAdd(wxCommandEvent & event)
 {
 	PopupSource* popupSource = new PopupSource(this, "Add");
-	popupSource->Show();
 	event.Skip();
 }
 
@@ -48,7 +47,6 @@ void SoundEngineMainWindow::onButtonClickedSourceEdit(wxCommandEvent & event)
 		sourcePtr->ifOccludable(),
 		sourcePtr->getAttenuationType());
 	PopupSource* popupSource = new PopupSource(this, "Edit", sourceDetails);
-	popupSource->Show();
 	event.Skip();
 }
 

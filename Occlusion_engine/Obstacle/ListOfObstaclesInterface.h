@@ -16,5 +16,6 @@ public:
 	virtual Obstacle* getPtrByNr(int Nr) const = 0;
 	virtual Obstacle* operator[] (int Nr) const = 0;
 
-	virtual int getObstaclesAmount() const = 0;
+	virtual unsigned int getObstaclesAmount() const = 0;
+	virtual unsigned int getObstaclesAmountLimit() const = 0;
 };

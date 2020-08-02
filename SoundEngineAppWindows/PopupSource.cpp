@@ -24,7 +24,10 @@ PopupSource::PopupSource(wxWindow* parent, std::string mode, SourceDetails sourc
 	txtMaxDistance = new wxStaticText(this, wxID_ANY, "maxDistance [m]:", wxPoint(410, 15), wxSize(130, 20));
 	txtIsOccludable = new wxStaticText(this, wxID_ANY, "isOccludable:", wxPoint(600, 15), wxSize(90, 20));
 	txtAttenuationType = new wxStaticText(this, wxID_ANY, "AttenuationType:", wxPoint(760, 15), wxSize(120, 20));
-
+	
+	std::string countText = "Sources status = " + std::to_string(listOfSourcesPtr->getSourcesAmount()) + " / " + std::to_string(listOfSourcesPtr->getSourcesAmountLimit());
+	txtCountStatus = new wxStaticText(this, wxID_ANY, countText, wxPoint(10, 70), wxSize(130, 20));
+	
 	posXInput = new wxTextCtrl(this, 1, wxEmptyString, wxPoint(60, 10), wxSize(60, 30));
 	posYInput = new wxTextCtrl(this, 2, wxEmptyString, wxPoint(180, 10), wxSize(60, 30));
 	LwaInput = new wxTextCtrl(this, 3, wxEmptyString, wxPoint(340, 10), wxSize(60, 30));
@@ -51,17 +54,28 @@ PopupSource::PopupSource(wxWindow* parent, std::string mode, SourceDetails sourc
 	{
 		fillWithSourceDetails(sourceDetails);
 	}
+	this->Show();
 }
 
 PopupSource::PopupSource(wxWindow* parent, std::string mode)
 	: PopupSource(parent, mode, SourceDetails())
-{}
+{
+	if (listOfSourcesPtr->getSourcesAmount() == listOfSourcesPtr->getSourcesAmountLimit() && mode == "Add")
+	{
+		m_shouldAutomaticallyFocusOnParentWindow = false;
+		this->Close();
+		PopupWindowSmall* errorWindow = new PopupWindowSmall(parent, "Error!", "Cannot add any more sources, memory full");
+	}
+}
 
 
 PopupSource::~PopupSource()
 {
-	m_parentWindow->Enable();
-	m_parentWindow->SetFocus();
+	if (m_shouldAutomaticallyFocusOnParentWindow)
+	{
+		m_parentWindow->Enable();
+		m_parentWindow->SetFocus();
+	}
 }
 
 void PopupSource::onButtonOkClicked(wxCommandEvent& event)

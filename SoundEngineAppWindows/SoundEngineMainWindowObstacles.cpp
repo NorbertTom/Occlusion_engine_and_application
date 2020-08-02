@@ -29,7 +29,6 @@ void SoundEngineMainWindow::onUIlistOfObstaclesDeselect(wxListEvent& event)
 void SoundEngineMainWindow::onButtonClickedObstacleAdd(wxCommandEvent & event)
 {
 	PopupObstacle* popupObstacle = new PopupObstacle(this, "Add");
-	popupObstacle->Show();
 	event.Skip();
 }
 
@@ -46,7 +45,6 @@ void SoundEngineMainWindow::onButtonClickedObstacleEdit(wxCommandEvent & event)
 		obstaclePtr->getPosY2(),
 		obstaclePtr->getDampening()	);
 	PopupObstacle* popupObstacle = new PopupObstacle(this, "Edit", obstacleDetails);
-	popupObstacle->Show();
 	event.Skip();
 }
 

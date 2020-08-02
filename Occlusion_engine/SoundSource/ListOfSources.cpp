@@ -1,17 +1,22 @@
 #include "ListOfSources.h"
-
-#include "ErrorLogging.h"
 #include "SoundSource.h"
-#include "NorMemoryPool.h"
-#include "NorMemoryPoolChunk.h"
+#include "ErrorLogging.h"
+
+#define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
+
+#ifdef UsingNorMemoryPool
+	#include "NorMemoryPool.h"
+	#include "NorMemoryPoolChunk.h"
+	NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70);
+	static const int limit = 70;
+#else
+	static const int limit = 1000;
+#endif
 
 ListOfSources* listOfSourcesPtr = new ListOfSources();
 
-#ifdef UsingNorMemoryPool
-NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70); // test fails because of 70 limit
-#endif
 
-ListOfSources::ListOfSources()
+ListOfSources::ListOfSources() : m_sourcesAmountLimit(limit)
 {
 #ifdef UsingNorMemoryPool
 	// memory pool operations

@@ -20,13 +20,15 @@ public:
 	Obstacle* getPtrByNr(int Nr) const override;
 	Obstacle* operator[] (int Nr) const override;
 	
-	int getObstaclesAmount() const override { return m_obstaclesAmount; };
+	unsigned int getObstaclesAmount() const override { return m_obstaclesAmount; };
+	unsigned int getObstaclesAmountLimit() const override { return m_obstaclesAmountLimit; };
 
 private:
 	std::vector<Obstacle*> m_listOfPointers;
 	int m_nextId = 0;
 	int m_obstaclesAmount = 0;
-
+	const unsigned int m_obstaclesAmountLimit;
+	
 	int getListNrById(int Id) const;
 };
 
