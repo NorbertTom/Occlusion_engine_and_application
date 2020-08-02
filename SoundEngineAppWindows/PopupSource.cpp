@@ -5,8 +5,8 @@
 #include "PopupWindowSmall.h"
 
 wxBEGIN_EVENT_TABLE(PopupSource, wxFrame)
-	EVT_BUTTON(10, onButtonOkClicked)
-	EVT_BUTTON(11, onButtonCancelClicked)
+EVT_BUTTON(10, onButtonOkClicked)
+EVT_BUTTON(11, onButtonCancelClicked)
 wxEND_EVENT_TABLE()
 
 

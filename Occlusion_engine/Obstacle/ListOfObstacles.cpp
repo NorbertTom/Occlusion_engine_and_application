@@ -1,15 +1,16 @@
 #include "ListOfObstacles.h"
 #include "Obstacle.h"
 #include "ErrorLogging.h"
+#include "NorMemoryPool.h"
+#include "NorMemoryPoolChunk.h"
 
 #define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
 
 #ifdef UsingNorMemoryPool
-	#include "NorMemoryPool.h"
-	#include "NorMemoryPoolChunk.h"
-	NorMemoryPoolChunk* obstaclesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Obstacle), 50);
+	SOUND_API NorMemoryPoolChunk* obstaclesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Obstacle), 50);
 	static const int limit = 50;
 #else
+	SOUND_API NorMemoryPoolChunk* obstaclesMemoryPool = nullptr;
 	static const int limit = 1000;
 #endif
 

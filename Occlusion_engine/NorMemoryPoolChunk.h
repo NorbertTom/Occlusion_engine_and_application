@@ -10,6 +10,8 @@ public:
 
 	void* addToPool(void* data);
 	bool deleteFromPool(void* ptr);
+	unsigned int getBytesTotal() const { return c_bytesTotal; }
+	unsigned int getBytesUsed() const { return m_bytesUsed; }
 
 private:
 	const unsigned int c_bytesPerObject;

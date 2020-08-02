@@ -1,15 +1,16 @@
 #include "ListOfReceivers.h"
 #include "Receiver.h"
 #include "ErrorLogging.h"
+#include "NorMemoryPool.h"
+#include "NorMemoryPoolChunk.h"
 
 #define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
 
 #ifdef UsingNorMemoryPool
-	#include "NorMemoryPool.h"
-	#include "NorMemoryPoolChunk.h"
-	NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20);
+	SOUND_API NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20);
 	static const int limit = 20;
 #else
+	SOUND_API NorMemoryPoolChunk* receiversMemoryPool = nullptr;
 	static const int limit = 1000;
 #endif
 

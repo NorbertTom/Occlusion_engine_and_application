@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PopupLoadSave.h" />
+    <ClInclude Include="PopupMemory.h" />
     <ClInclude Include="PopupObstacle.h" />
     <ClInclude Include="PopupReceiver.h" />
     <ClInclude Include="PopupSource.h" />
@@ -30,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PopupLoadSave.cpp" />
+    <ClCompile Include="PopupMemory.cpp" />
     <ClCompile Include="PopupObstacle.cpp" />
     <ClCompile Include="PopupReceiver.cpp" />
     <ClCompile Include="PopupSource.cpp" />

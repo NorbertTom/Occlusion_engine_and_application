@@ -4,6 +4,7 @@
 #include "LoadingData.h"
 #include "UpdateFunctions.h"
 #include "PopupLoadSave.h"
+#include "PopupMemory.h"
 #include "Receiver.h"
 #include "ListOfReceivers.h"
 
@@ -30,6 +31,12 @@ void SoundEngineMainWindow::onButtonClickedLoad(wxCommandEvent& event)
 void SoundEngineMainWindow::onButtonClickedSave(wxCommandEvent& event)
 {
 	PopupLoadSave* loadSaveWindow = new PopupLoadSave(this, false); 
+	event.Skip();
+}
+
+void SoundEngineMainWindow::onButtonClickedMemory(wxCommandEvent& event)
+{
+	PopupMemory* memoryWindow = new PopupMemory(this);
 	event.Skip();
 }
 

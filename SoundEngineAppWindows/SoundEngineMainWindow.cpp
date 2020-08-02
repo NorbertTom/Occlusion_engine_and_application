@@ -9,6 +9,7 @@ wxBEGIN_EVENT_TABLE(SoundEngineMainWindow, wxFrame)
 	EVT_BUTTON(665, onButtonClickedClearSelection)
 	EVT_BUTTON(664, onButtonClickedLoad)
 	EVT_BUTTON(663, onButtonClickedSave)
+	EVT_BUTTON(667, onButtonClickedMemory)
 
 	EVT_BUTTON(700, onButtonClickedGoUp)
 	EVT_BUTTON(701, onButtonClickedGoLeft)
@@ -78,12 +79,13 @@ SoundEngineMainWindow::SoundEngineMainWindow()
 	buttonReceiverDelete = new wxButton(this, 303, "Delete", wxPoint(660, 610), wxSize(70, 30));
 	buttonReceiverDeleteAll = new wxButton(this, 304, "Delete All", wxPoint(735, 610), wxSize(70, 30));
 
-	buttonExit = new wxButton(this, 666, "Exit", wxPoint(370, 420), wxSize(130, 30));
-	buttonClearSelection = new wxButton(this, 665, "Clear selection", wxPoint(370, 460), wxSize(130, 30));
-	buttonLoad = new wxButton(this, 664, "Load", wxPoint(370, 500), wxSize(130, 30));
-	buttonSave = new wxButton(this, 663, "Save", wxPoint(370, 540), wxSize(130, 30));
+	buttonExit = new wxButton(this, 666, "Exit", wxPoint(370, 410), wxSize(130, 30));
+	buttonClearSelection = new wxButton(this, 665, "Clear selection", wxPoint(370, 450), wxSize(130, 30));
+	buttonLoad = new wxButton(this, 664, "Load", wxPoint(370, 490), wxSize(130, 30));
+	buttonSave = new wxButton(this, 663, "Save", wxPoint(370, 530), wxSize(130, 30));
+	buttonMemory = new wxButton(this, 667, "Memory", wxPoint(370, 570), wxSize(130, 30));
 
-	labelWalk = new wxStaticText(this, wxID_ANY, "Walk with Active Receiver", wxPoint(350, 640), wxSize(170, 30));
+	labelWalk = new wxStaticText(this, wxID_ANY, "Walk with Active Receiver", wxPoint(360, 640), wxSize(170, 30));
 	buttonGoUp = new wxButton(this, 700, "Up", wxPoint(410, 670), wxSize(50, 30));
 	buttonGoLeft = new wxButton(this, 701, "Left", wxPoint(350, 710), wxSize(50, 30));
 	buttonGoDown = new wxButton(this, 702, "Down", wxPoint(410, 710), wxSize(50, 30));

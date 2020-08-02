@@ -1,15 +1,16 @@
 #include "ListOfSources.h"
 #include "SoundSource.h"
 #include "ErrorLogging.h"
+#include "NorMemoryPool.h"
+#include "NorMemoryPoolChunk.h"
 
 #define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
 
 #ifdef UsingNorMemoryPool
-	#include "NorMemoryPool.h"
-	#include "NorMemoryPoolChunk.h"
-	NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70);
+	SOUND_API NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70);
 	static const int limit = 70;
 #else
+	SOUND_API NorMemoryPoolChunk* sourcesMemoryPool = nullptr;
 	static const int limit = 1000;
 #endif
 

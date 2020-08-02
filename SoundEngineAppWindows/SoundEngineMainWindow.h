@@ -24,6 +24,7 @@ public:
 	wxButton* buttonClearSelection = nullptr;
 	wxButton* buttonLoad = nullptr;
 	wxButton* buttonSave = nullptr;
+	wxButton* buttonMemory = nullptr;
 
 	wxStaticText* labelWalk = nullptr;
 	wxButton* buttonGoUp = nullptr;
@@ -51,6 +52,7 @@ public:
 	void onButtonClickedClearSelection(wxCommandEvent& event);
 	void onButtonClickedLoad(wxCommandEvent& event);
 	void onButtonClickedSave(wxCommandEvent& event);
+	void onButtonClickedMemory(wxCommandEvent& event);
 
 	void onButtonClickedSourceAdd(wxCommandEvent& event);
 	void onButtonClickedSourceEdit(wxCommandEvent& event);
