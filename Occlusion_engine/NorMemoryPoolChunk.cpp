@@ -54,7 +54,8 @@ void* NorMemoryPoolChunk::getSlotPtr(const unsigned int position)
 {
 	if (position < c_quantity)
 	{
-		return (reinterpret_cast<char*>(c_chunkStartPtr) + (c_bytesPerObject * position));
+		const unsigned int bytesFromStart = c_bytesPerObject * position;
+		return (reinterpret_cast<char*>(c_chunkStartPtr) + bytesFromStart);
 	}
 	else
 	{
