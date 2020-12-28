@@ -51,8 +51,7 @@ bool LoadingData::loadDataFromFile(std::string& fileName)
 	else
 	{
 		std::cout << "Wrong filename\n";
-		LOG_WARNING("Wrong filename");
-		LOG_INFO(fileName);
+		LOG_WARNING("Wrong filename during loading: " + fileName);
 	}
 	return isLoadingSuccesfull;
 }

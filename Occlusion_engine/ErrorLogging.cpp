@@ -7,10 +7,10 @@ namespace ErrorLogging {
 
 	static bool fileCreated = false;
 
-	void PrintLogToFile(unsigned int severity, std::string message)
+	void PrintLogToFile(unsigned int severity, std::string &&message)
 	{
 		enum class MessageSeverity { Info=0, Warning, Error };
-		MessageSeverity messageSeverity;
+		MessageSeverity messageSeverity = MessageSeverity::Info;
 		
 		if (severity < 3)
 			messageSeverity = static_cast<MessageSeverity>(severity);

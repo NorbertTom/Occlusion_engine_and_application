@@ -9,6 +9,6 @@
 
 namespace ErrorLogging {
 
-	void PrintLogToFile(unsigned int severity, std::string message);
+	void PrintLogToFile(unsigned int severity, std::string &&message);
 
 }
