@@ -44,7 +44,7 @@ SoundSource* ListOfSources::addSource(SoundSourceDescriptor &soundSourceDescript
 	auto allocator = sourcesMemoryPool->addToPool(&newSourceStack);
 	if (!allocator)
 	{
-		return nullptr;
+		return nullptr; // no free slot
 	}
 	SoundSource* newSource = reinterpret_cast<SoundSource*>(allocator);
 #else
@@ -60,7 +60,7 @@ SoundSource* ListOfSources::addSource(SoundSourceDescriptor &soundSourceDescript
 void ListOfSources::deleteSourceById(int Id)
 {
 	int number = getListNrById(Id);
-	if (number == 2000000)
+	if (number == -1)
 	{
 		LOG_ERROR("Wrong ID provided in deleteSourceById");
 	}
@@ -70,17 +70,20 @@ void ListOfSources::deleteSourceById(int Id)
 	}
 }
 
-void ListOfSources::deleteSourceByNr(int Nr) //should be crash proofed if (Nr < m_sourcesAmount) or smth
+void ListOfSources::deleteSourceByNr(int Nr)
 {
+	if (SoundSource* sourcePtr = m_listOfPointers[Nr])
+	{
 #ifdef UsingNorMemoryPool
-	sourcesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
+		sourcesMemoryPool->deleteFromPool(sourcePtr);
 #else
-	delete m_listOfPointers[Nr];
+		delete SourcePtr;
 #endif
 
-	auto it = m_listOfPointers.begin();
-	m_listOfPointers.erase(it + Nr);
-	m_sourcesAmount--;
+		auto it = m_listOfPointers.begin();
+		m_listOfPointers.erase(it + Nr);
+		m_sourcesAmount--;
+	}
 }
 
 void ListOfSources::deleteAll()
@@ -106,7 +109,7 @@ SoundSource* ListOfSources::getPtrById(int Id) const
 
 SoundSource* ListOfSources::getPtrByNr(int Nr) const
 {
-	if (Nr < m_sourcesAmount)
+	if (Nr < m_sourcesAmount && Nr > -1)
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -126,12 +129,12 @@ int ListOfSources::getListNrById(int Id) const
 		}
 	}
 	LOG_WARNING("Didnt find object by ID in ListOfSources::getListNrById!");
-	return 2000000;
+	return -1;
 }
 
 SoundSource* ListOfSources::operator[] (int Nr) const
 {
-	if (Nr < m_sourcesAmount)
+	if (Nr < m_sourcesAmount && Nr > -1)
 	{
 		return m_listOfPointers[Nr];
 	}
