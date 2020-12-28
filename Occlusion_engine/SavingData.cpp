@@ -26,11 +26,6 @@ SavingData::~SavingData()
 {
 }
 
-void SavingData::saveAll()
-{/*
-	std::string name = FileUtils::enterFileName();
-	saveAllToBinFile(name);
-*/}
 
 void SavingData::saveAll(std::string fileName)
 {

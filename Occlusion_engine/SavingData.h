@@ -8,7 +8,6 @@ class SOUND_API SavingData
 public:
 	SavingData();
 	~SavingData();
-	void saveAll(); // erase
 	void saveAll(std::string fileName);
 
 private:
