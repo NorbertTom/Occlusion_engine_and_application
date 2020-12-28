@@ -69,17 +69,20 @@ void ListOfObstacles::deleteObstacleById(int Id)
 	}
 }
 
-void ListOfObstacles::deleteObstacleByNr(int Nr) // nr should be crash proof here
+void ListOfObstacles::deleteObstacleByNr(int Nr)
 {
+	if (m_listOfPointers[Nr])
+	{
 #ifdef UsingNorMemoryPool
-	obstaclesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
+		obstaclesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
-	delete m_listOfPointers[Nr];
+		delete m_listOfPointers[Nr];
 #endif
 
-	auto it = m_listOfPointers.begin();
-	m_listOfPointers.erase(it + Nr);
-	m_obstaclesAmount--;
+		auto it = m_listOfPointers.begin();
+		m_listOfPointers.erase(it + Nr);
+		m_obstaclesAmount--;
+	}
 }
 
 void ListOfObstacles::deleteAll()
