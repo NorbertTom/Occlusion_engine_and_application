@@ -24,11 +24,11 @@ namespace SoundEngineInitializer
 
 	void close()
 	{
+		LOG_INFO("Application closing");
 		delete listOfReceiversPtr;
 		delete listOfObstaclesPtr;
 		delete listOfSourcesPtr;
 		delete loadingData;
 		delete norMemoryPool;
-		// deal with leaks!
 	}
 }
