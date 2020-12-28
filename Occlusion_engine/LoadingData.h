@@ -8,7 +8,6 @@ public:
 	LoadingData();
 	~LoadingData();
 	bool loadDataFromFile(std::string& fileName);
-	bool wasLoadingSuccessfull();
 
 private:
 

@@ -168,14 +168,3 @@ bool LoadingData::loadReceivers(std::ifstream& file)
 	LOG_INFO("Receivers loaded succesfully");
 	return ifSuccess;
 }
-
-bool LoadingData::wasLoadingSuccessfull()
-{
-	bool result = false;
-	if (loadObstaclesSuccess == true && loadObstaclesSuccess == true && loadReceiversSuccess == true)
-	{
-		result = true;
-	}
-	loadingSuccess = result;
-	return result;
-}
