@@ -60,7 +60,7 @@ Receiver* ListOfReceivers::createReceiver(float X, float Y)
 void ListOfReceivers::deleteReceiverById(int Id)
 {
 	int nr = getListNrById(Id);
-	if (nr == 2000000)
+	if (nr == -1)
 	{
 		LOG_WARNING("Wrong Id provided in deleteReceiverById method!");
 		return;
@@ -70,15 +70,18 @@ void ListOfReceivers::deleteReceiverById(int Id)
 
 void ListOfReceivers::deleteReceiverByNr(int Nr)
 {
+	if (Receiver* receiverPtr = m_listOfPointers[Nr])
+	{
 #ifdef UsingNorMemoryPool
-	receiversMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
+		receiversMemoryPool->deleteFromPool(receiverPtr);
 #else
-	delete m_listOfPointers[Nr];
+		delete receiverPtr;
 #endif
 
-	auto it = m_listOfPointers.begin();
-	m_listOfPointers.erase(it + Nr);
-	m_receiversAmount--;
+		auto it = m_listOfPointers.begin();
+		m_listOfPointers.erase(it + Nr);
+		m_receiversAmount--;
+	}
 }
 
 void ListOfReceivers::deleteAll()
@@ -123,7 +126,7 @@ Receiver* ListOfReceivers::getActive() const
 
 Receiver* ListOfReceivers::operator[](int Nr) const
 {
-	if (Nr < m_receiversAmount)
+	if (Nr < m_receiversAmount && Nr > -1)
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -143,12 +146,12 @@ int ListOfReceivers::getListNrById(int Id) const
 		}
 	}
 	LOG_ERROR("Didn't find object by id in ListOfSources::getListNrById!");
-	return 2000000;
+	return -1;
 }
 
 Receiver* ListOfReceivers::getPtrByNr(int Nr) const
 {
-	if (Nr < m_receiversAmount)
+	if (Nr < m_receiversAmount && Nr > -1)
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -172,7 +175,7 @@ Receiver* ListOfReceivers::getPtrById(int id) const
 
 void ListOfReceivers::activate(int nr) const
 {
-	if (nr < m_receiversAmount)
+	if (nr < m_receiversAmount && nr > -1)
 	{
 		deactivateAll();
 		m_listOfPointers[nr]->activate();
@@ -181,8 +184,11 @@ void ListOfReceivers::activate(int nr) const
 
 void ListOfReceivers::activateById(int id) const
 {
-	deactivateAll();
-	getPtrById(id)->activate();
+	if (Receiver* receiverPtr = getPtrById(id))
+	{
+		deactivateAll();
+		receiverPtr->activate();
+	}
 }
 
 void ListOfReceivers::deactivateAll() const
