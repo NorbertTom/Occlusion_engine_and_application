@@ -128,14 +128,14 @@ int ListOfObstacles::getListNrById(int Id) const
 		}
 	}
 	LOG_WARNING("Didn't find object by ID in ListOfObstacles::getListNrById!");
-	return 2000000;
+	return -1;
 }
 
 Obstacle* ListOfObstacles::operator[] (int Nr) const
 {
-	if (Nr < m_obstaclesAmount)
+	if (Obstacle* returnedObject = m_listOfPointers[Nr])
 	{
-		return m_listOfPointers[Nr];
+		return returnedObject;
 	}
 	else
 	{
