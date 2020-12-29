@@ -104,7 +104,10 @@ void PopupObstacle::onButtonOkClicked(wxCommandEvent& event)
 		if (m_windowMode == "Add")
 		{
 			ObstacleDescriptor newObstacleDetails(newValues[0], newValues[1], newValues[2], newValues[3], newValues[4], newValues[5]);
-			listOfObstaclesPtr->addObstacle(newObstacleDetails);
+			if ( !(listOfObstaclesPtr->addObstacle(newObstacleDetails)) )
+			{
+				PopupWindowSmall* errorWindow = new PopupWindowSmall(this, "Error!", "No memory available for new obstacle");
+			}
 		}
 		else if (m_windowMode == "Edit")
 		{
