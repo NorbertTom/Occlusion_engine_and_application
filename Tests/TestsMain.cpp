@@ -7,16 +7,33 @@
 
 namespace Tests {
 
-	void runAllAvailableTests()
+	void runTests(TestOptions testOptions)
 	{
 		LOG_INFO("\n--------------------------------\nTesting started");
 		PrintErrorLogToFile("Testing started!");
 		int nrOfFailures = 0;
-		nrOfFailures = nrOfFailures + testIsSoundSourceOccludedByObstacle::testMain();
-		nrOfFailures = nrOfFailures + testIfObstacleListWorks::testMain();
-		nrOfFailures = nrOfFailures + testIfSoundSourceListWorks::testMain();
-		nrOfFailures = nrOfFailures + testSetCurrentAttenuationOnSources::testMain();
-		nrOfFailures = nrOfFailures + testLoadingAndSaving::testMain();
+
+		if (testOptions & TestOptions::UnitTests)
+		{
+			PrintErrorLogToFile("\nPerforming Unit Tests");
+			nrOfFailures = nrOfFailures + testIsSoundSourceOccludedByObstacle::testMain();
+			nrOfFailures = nrOfFailures + testIfObstacleListWorks::testMain();
+			nrOfFailures = nrOfFailures + testIfSoundSourceListWorks::testMain();
+			nrOfFailures = nrOfFailures + testSetCurrentAttenuationOnSources::testMain();
+			nrOfFailures = nrOfFailures + testLoadingAndSaving::testMain();
+		}
+		if (testOptions & TestOptions::PerformanceTests)
+		{
+			PrintErrorLogToFile("\nPerforming Performance Tests");
+		}
+		if (testOptions & TestOptions::SomeFutureTests)
+		{
+			PrintErrorLogToFile("\nPerforming SomeFuture Tests");
+		}
+		if (testOptions == TestOptions::NONE)
+		{
+			PrintErrorLogToFile("\nNo tests performed");
+		}
 
 		if (nrOfFailures > 0)
 		{

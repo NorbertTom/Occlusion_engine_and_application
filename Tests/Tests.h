@@ -5,7 +5,19 @@
 
 namespace Tests {
 
-	void runAllAvailableTests();
+	enum TestOptions {
+		NONE				= 0,
+		UnitTests			= 1 << 0,
+		PerformanceTests	= 1 << 1,
+		SomeFutureTests		= 1 << 2
+	};
+
+	inline TestOptions operator+ (TestOptions a, TestOptions b)
+	{
+		return static_cast<TestOptions>(static_cast<int>(a) | static_cast<int>(b));
+	}
+
+	void runTests(TestOptions testOptions);
 	void printFailed(bool* testPassed, int size);
 	void PrintErrorLogToFile(std::string message);
 
