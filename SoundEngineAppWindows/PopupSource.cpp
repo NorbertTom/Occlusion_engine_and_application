@@ -124,7 +124,12 @@ void PopupSource::onButtonOkClicked(wxCommandEvent& event)
 		{
 			SoundSourceDescriptor newSourceDetails(newValues[0], newValues[1], newValues[2], newValues[3], isOccludableChoice, 
 				static_cast<AttenuationType>(attenuationChoice));
-			listOfSourcesPtr->addSource(newSourceDetails);
+
+			if ( !(listOfSourcesPtr->addSource(newSourceDetails)) )
+			{
+				PopupWindowSmall* errorWindow = new PopupWindowSmall(this, "Error!", "No memory available for new source");
+			}
+			
 		}
 		else if (m_windowMode == "Edit")
 		{

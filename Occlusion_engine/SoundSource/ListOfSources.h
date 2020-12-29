@@ -28,6 +28,7 @@ private:
 	const unsigned int m_sourcesAmountLimit;
 
 	int getListNrById(int Id) const;
+	bool isListIndexValid(int Nr) const;
 };
 
 extern SOUND_API ListOfSources* listOfSourcesPtr;

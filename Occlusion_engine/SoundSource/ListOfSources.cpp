@@ -72,12 +72,12 @@ void ListOfSources::deleteSourceById(int Id)
 
 void ListOfSources::deleteSourceByNr(int Nr)
 {
-	if (SoundSource* sourcePtr = m_listOfPointers[Nr])
+	if (isListIndexValid(Nr))
 	{
 #ifdef UsingNorMemoryPool
-		sourcesMemoryPool->deleteFromPool(sourcePtr);
+		sourcesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
-		delete SourcePtr;
+		delete m_listOfPointers[Nr];
 #endif
 
 		auto it = m_listOfPointers.begin();
@@ -109,7 +109,7 @@ SoundSource* ListOfSources::getPtrById(int Id) const
 
 SoundSource* ListOfSources::getPtrByNr(int Nr) const
 {
-	if (Nr < m_sourcesAmount && Nr > -1)
+	if (isListIndexValid(Nr))
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -134,7 +134,7 @@ int ListOfSources::getListNrById(int Id) const
 
 SoundSource* ListOfSources::operator[] (int Nr) const
 {
-	if (Nr < m_sourcesAmount && Nr > -1)
+	if (isListIndexValid(Nr))
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -142,4 +142,14 @@ SoundSource* ListOfSources::operator[] (int Nr) const
 	{
 		return nullptr;
 	}
+}
+
+bool ListOfSources::isListIndexValid(int Nr) const
+{
+	bool result = false;
+	if (Nr < m_listOfPointers.size() && Nr > -1)
+	{
+		result = true;
+	}
+	return result;
 }

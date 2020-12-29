@@ -77,19 +77,29 @@ namespace Tests
 			
 			for (int i = 0; i < 3; i++)
 			{
+				if ( !(listOfSourcesPtr->getPtrByNr(i)) )
+				{
+					failCounter++;
+					return false;
+				}
 				if (listOfSourcesPtr->getPtrByNr(i)->getCurrentAttenuation() == 0)
 				{
 					failCounter++;
 					return false;
 				}
 			}
+			if ( !(listOfSourcesPtr->getPtrByNr(3)) || !(listOfSourcesPtr->getPtrByNr(4)) )
+			{
+				failCounter++;
+				return false;
+			}
 			if (listOfSourcesPtr->getPtrByNr(3)->getCurrentAttenuation() != 0)
 			{
 				failCounter++;
 				return false;
 			}
-			else if (listOfSourcesPtr->getPtrByNr(4)->getCurrentAttenuation() >
-				listOfSourcesPtr->getPtrByNr(2)->getCurrentAttenuation())
+			else if (listOfSourcesPtr->getPtrByNr(4) && listOfSourcesPtr->getPtrByNr(2) && (listOfSourcesPtr->getPtrByNr(4)->getCurrentAttenuation() >
+				listOfSourcesPtr->getPtrByNr(2)->getCurrentAttenuation()))
 			{
 				failCounter++;
 				return false;
@@ -152,7 +162,8 @@ namespace Tests
 			listOfObstaclesPtr->addObstacle(obstacle2Descriptor); 
 			listOfObstaclesPtr->addObstacle(obstacle3Descriptor); 
 			updateFunctions->update();
-			if (listOfSourcesPtr->getPtrById(0)->getCurrentAttenuation() == listOfObstaclesPtr->getPtrByNr(0)->getDampening()
+			if (listOfSourcesPtr->getPtrById(0) && listOfSourcesPtr->getPtrById(1) && listOfSourcesPtr->getPtrById(2)
+				&& listOfSourcesPtr->getPtrById(0)->getCurrentAttenuation() == listOfObstaclesPtr->getPtrByNr(0)->getDampening()
 				&& listOfSourcesPtr->getPtrById(1)->getCurrentAttenuation() == listOfObstaclesPtr->getPtrByNr(1)->getDampening()
 				&& listOfSourcesPtr->getPtrById(2)->getCurrentAttenuation() == listOfObstaclesPtr->getPtrByNr(2)->getDampening())
 				return true;
