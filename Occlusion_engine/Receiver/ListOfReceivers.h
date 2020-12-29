@@ -33,6 +33,8 @@ private:
 	int m_nextId = 0;
 	unsigned int m_receiversAmount = 0;
 	const unsigned int m_receiversAmountLimit;
+
+	bool isListIndexValid(int Nr) const;
 };
 
 extern SOUND_API ListOfReceivers* listOfReceiversPtr;

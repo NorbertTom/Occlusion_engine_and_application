@@ -193,8 +193,9 @@ namespace Tests
 			Obstacle* mur3 = listOfObstaclesPtr->addObstacle(obstacle3Desc);
 			Obstacle* mur4 = listOfObstaclesPtr->addObstacle(obstacle4Desc);
 			updateFunctions->update();
-			if (listOfSourcesPtr->getPtrByNr(0)->getCurrentAttenuation() > (mur1->getDampening() + mur2->getDampening())
-				&& listOfSourcesPtr->getPtrByNr(1)->getCurrentAttenuation() > (mur3->getDampening() + mur4->getDampening()))
+			if (mur1 && mur2 && mur3 && mur4
+				&& (listOfSourcesPtr->getPtrByNr(0)->getCurrentAttenuation() > (mur1->getDampening() + mur2->getDampening())
+				&& listOfSourcesPtr->getPtrByNr(1)->getCurrentAttenuation() > (mur3->getDampening() + mur4->getDampening())))
 				return true;
 			else
 			{

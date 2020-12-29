@@ -43,6 +43,7 @@ Receiver* ListOfReceivers::createReceiver(float X, float Y)
 	auto allocator = receiversMemoryPool->addToPool(&newReceiverStack);
 	if (!allocator)
 	{
+		LOG_WARNING("No receiver added, memory full");
 		return nullptr;
 	}
 	Receiver* newReceiver = reinterpret_cast<Receiver*>(allocator);
@@ -70,12 +71,12 @@ void ListOfReceivers::deleteReceiverById(int Id)
 
 void ListOfReceivers::deleteReceiverByNr(int Nr)
 {
-	if (Receiver* receiverPtr = m_listOfPointers[Nr])
+	if (isListIndexValid(Nr))
 	{
 #ifdef UsingNorMemoryPool
-		receiversMemoryPool->deleteFromPool(receiverPtr);
+		receiversMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
-		delete receiverPtr;
+		delete m_listOfPointers[Nr];
 #endif
 
 		auto it = m_listOfPointers.begin();
@@ -99,7 +100,7 @@ void ListOfReceivers::deleteAllButActive()
 	int iterator = 0;
 	while (m_receiversAmount > 1)
 	{
-		if (activePtr==m_listOfPointers[iterator])
+		if (activePtr && activePtr==m_listOfPointers[iterator])
 		{
 			iterator++;
 		}
@@ -115,7 +116,7 @@ Receiver* ListOfReceivers::getActive() const
 	Receiver* activePtr = nullptr;
 	for (int i = 0; i < m_receiversAmount; i++)
 	{
-		if (m_listOfPointers[i]->ifActive())
+		if (getPtrByNr(i)->ifActive())
 		{
 			activePtr = m_listOfPointers[i];
 			return activePtr; // for performance sake
@@ -126,7 +127,7 @@ Receiver* ListOfReceivers::getActive() const
 
 Receiver* ListOfReceivers::operator[](int Nr) const
 {
-	if (Nr < m_receiversAmount && Nr > -1)
+	if (isListIndexValid(Nr))
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -140,7 +141,7 @@ int ListOfReceivers::getListNrById(int Id) const
 {
 	for (int i = 0; i < m_receiversAmount; i++)
 	{
-		if (m_listOfPointers[i]->getId() == Id)
+		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
 			return i;
 		}
@@ -151,7 +152,7 @@ int ListOfReceivers::getListNrById(int Id) const
 
 Receiver* ListOfReceivers::getPtrByNr(int Nr) const
 {
-	if (Nr < m_receiversAmount && Nr > -1)
+	if (isListIndexValid(Nr))
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -165,7 +166,7 @@ Receiver* ListOfReceivers::getPtrById(int id) const
 {
 	for (int i = 0; i < m_receiversAmount; i++)
 	{
-		if (m_listOfPointers[i]->getId() == id)
+		if (getPtrByNr(i) && getPtrByNr(i)->getId() == id)
 		{
 			return m_listOfPointers[i];
 		}
@@ -175,10 +176,10 @@ Receiver* ListOfReceivers::getPtrById(int id) const
 
 void ListOfReceivers::activate(int nr) const
 {
-	if (nr < m_receiversAmount && nr > -1)
+	if (Receiver* receiverPtr = getPtrByNr(nr))
 	{
 		deactivateAll();
-		m_listOfPointers[nr]->activate();
+		receiverPtr->activate();
 	}
 }
 
@@ -195,6 +196,19 @@ void ListOfReceivers::deactivateAll() const
 {
 	for (int i = 0; i < m_receiversAmount; i++)
 	{
-		m_listOfPointers[i]->deactivate();
+		if (getPtrByNr(i))
+		{
+			getPtrByNr(i)->deactivate();
+		}
 	}
+}
+
+bool ListOfReceivers::isListIndexValid(int Nr) const
+{
+	bool result = false;
+	if (Nr < m_listOfPointers.size() && Nr > -1)
+	{
+		result = true;
+	}
+	return result;
 }

@@ -30,6 +30,8 @@ private:
 	const unsigned int m_obstaclesAmountLimit;
 	
 	int getListNrById(int Id) const;
+
+	bool isListIndexValid(int Nr) const;
 };
 
 extern SOUND_API ListOfObstacles* listOfObstaclesPtr;

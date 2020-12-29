@@ -44,6 +44,7 @@ SoundSource* ListOfSources::addSource(SoundSourceDescriptor &soundSourceDescript
 	auto allocator = sourcesMemoryPool->addToPool(&newSourceStack);
 	if (!allocator)
 	{
+		LOG_WARNING("Source not added, memory full");
 		return nullptr; // no free slot
 	}
 	SoundSource* newSource = reinterpret_cast<SoundSource*>(allocator);
@@ -99,7 +100,7 @@ SoundSource* ListOfSources::getPtrById(int Id) const
 {
 	for (int i = 0; i < m_sourcesAmount; i++)
 	{
-		if (m_listOfPointers[i]->getId() == Id)
+		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
 			return m_listOfPointers[i];
 		}
@@ -123,7 +124,7 @@ int ListOfSources::getListNrById(int Id) const
 {
 	for (int i = 0; i < m_sourcesAmount; i++)
 	{
-		if (m_listOfPointers[i]->getId() == Id)
+		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
 			return i;
 		}

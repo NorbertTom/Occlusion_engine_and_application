@@ -43,6 +43,7 @@ Obstacle* ListOfObstacles::addObstacle(ObstacleDescriptor& obstacleDescriptor)
 	auto allocator = obstaclesMemoryPool->addToPool(&newObstacleStack);
 	if (!allocator)
 	{
+		LOG_WARNING("No obstacle added, memory full");
 		return nullptr;
 	}
 	Obstacle* newObstacle = reinterpret_cast<Obstacle*>(allocator); 
@@ -59,7 +60,7 @@ Obstacle* ListOfObstacles::addObstacle(ObstacleDescriptor& obstacleDescriptor)
 void ListOfObstacles::deleteObstacleById(int Id)
 {
 	int number = getListNrById(Id);
-	if (number == 2000000)
+	if (number == -1)
 	{
 		LOG_ERROR("Wrong ID provided in deleteObstacleById");
 	}
@@ -71,7 +72,7 @@ void ListOfObstacles::deleteObstacleById(int Id)
 
 void ListOfObstacles::deleteObstacleByNr(int Nr)
 {
-	if (m_listOfPointers[Nr])
+	if (isListIndexValid(Nr))
 	{
 #ifdef UsingNorMemoryPool
 		obstaclesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
@@ -96,7 +97,7 @@ void ListOfObstacles::deleteAll()
 
 Obstacle* ListOfObstacles::getPtrByNr(int Nr) const
 { 
-	if (Nr < m_obstaclesAmount)
+	if (isListIndexValid(Nr))
 	{
 		return m_listOfPointers[Nr];
 	}
@@ -110,7 +111,7 @@ Obstacle* ListOfObstacles::getPtrById(int Id) const
 {
 	for (int i = 0; i < m_obstaclesAmount; i++)
 	{
-		if (m_listOfPointers[i]->getId() == Id)
+		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
 			return m_listOfPointers[i];
 		}
@@ -122,7 +123,7 @@ int ListOfObstacles::getListNrById(int Id) const
 {
 	for (int i = 0; i < m_obstaclesAmount; i++)
 	{
-		if (m_listOfPointers[i]->getId() == Id)
+		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
 			return i;
 		}
@@ -133,12 +134,22 @@ int ListOfObstacles::getListNrById(int Id) const
 
 Obstacle* ListOfObstacles::operator[] (int Nr) const
 {
-	if (Obstacle* returnedObject = m_listOfPointers[Nr])
+	if (isListIndexValid(Nr))
 	{
-		return returnedObject;
+		return m_listOfPointers[Nr];
 	}
 	else
 	{
 		return nullptr;
 	}
+}
+
+bool ListOfObstacles::isListIndexValid(int Nr) const
+{
+	bool result = false;
+	if (Nr < m_listOfPointers.size() && Nr > -1)
+	{
+		result = true;
+	}
+	return result;
 }

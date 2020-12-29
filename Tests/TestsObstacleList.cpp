@@ -101,7 +101,7 @@ namespace Tests
 			//If DeleteAll works
 			BasicMath::Timer timer;
 			ObstacleDescriptor obstacleDesc(1, 2, 3, 4, 5);
-			for (int i = 0; i < 60; i++)
+			for (int i = 0; i < 50; i++)
 			{
 				listOfObstaclesPtr->addObstacle(obstacleDesc);
 			}
