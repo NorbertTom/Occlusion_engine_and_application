@@ -133,9 +133,8 @@ namespace Tests
 			updateFunctions->resetLists();
 			int nrOfTests = sizeof(testPassedObstacleList);
 			
-			std::string log = "If Obstacle List Works tests passed: " + 
-				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests);
-			PrintErrorLogToFile(log);
+			PrintErrorLogToFile("If Obstacle List Works tests passed: " +
+				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests));
 
 			if (failCounter > 0)
 				printFailed(testPassedObstacleList, sizeof(testPassedObstacleList));

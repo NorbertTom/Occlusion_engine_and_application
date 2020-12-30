@@ -13,7 +13,7 @@ namespace SoundEngineInitializer
 	{
 		LOG_INFO("Application started");
 		initializeMemory();		
-		Tests::runTests(Tests::TestOptions::UnitTests);
+		Tests::runTests(Tests::TestOptions::UnitTests + Tests::TestOptions::PerformanceTests);
 		std::cout << "Occlusion program has started. Written by Norbert Tomczak. All rights reserved.\n";
 	}
 

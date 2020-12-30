@@ -19,7 +19,10 @@ namespace Tests {
 
 	void runTests(TestOptions testOptions);
 	void printFailed(bool* testPassed, int size);
-	void PrintErrorLogToFile(std::string message);
+	void PrintErrorLogToFile(std::string &&message);
+	std::string CreateNewPerformanceLogFile(std::string &&message);
+	void PrintToPerformanceLogFile(std::string& fileName, const float* firstNumber, const unsigned int quantity);
+	void PrintToPerformanceLogFile(std::string& fileName, std::string &&message);
 
 	namespace testIsSoundSourceOccludedByObstacle
 	{
@@ -65,7 +68,13 @@ namespace Tests {
 		int testMain();
 
 		bool ifRandomNrOfObjectsEqual(int nrOfSourcesMin, int nrOfObstaclesMin, int nrOfReceiversMin, bool testPostUpdate, bool randomize);
+	}
 
+	namespace testPerformance
+	{
+		int testMain();
 
+		void populateWithSources(const unsigned int quantity);
+		void populateWithObstacles(const unsigned int quantity);
 	}
 }

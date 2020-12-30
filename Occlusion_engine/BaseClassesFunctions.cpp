@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace Tests { void PrintErrorLogToFile(std::string); }
+namespace Tests { void PrintErrorLogToFile(std::string &&); }
 
 namespace BasicMath {
 
@@ -55,13 +55,25 @@ namespace BasicMath {
 		start = std::chrono::high_resolution_clock::now();
 	}
 
+	Timer::Timer(float* ptr) : Timer()
+	{
+		m_ptr = ptr;
+	}
+
 	Timer::~Timer()
 	{
 		using namespace std::literals::chrono_literals;
 		end = std::chrono::high_resolution_clock::now();
 		duration = end - start;
 		float ms = duration.count() * 1000.0f;
-		Tests::PrintErrorLogToFile("It took " + std::to_string(ms) + " ms");
+		if (m_ptr)
+		{
+			*m_ptr = ms;
+		}
+		else
+		{
+			Tests::PrintErrorLogToFile("It took " + std::to_string(ms) + " ms");
+		}
 	}
 
 }

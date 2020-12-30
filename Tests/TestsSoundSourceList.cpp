@@ -132,9 +132,8 @@ namespace Tests
 			updateFunctions->resetLists();
 			int nrOfTests = sizeof(testPassedSoundSourceList);
 
-			std::string log = "If SoundSource List Works tests passed: " +
-				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests);
-			PrintErrorLogToFile(log);
+			PrintErrorLogToFile("If SoundSource List Works tests passed: " +
+				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests));
 
 			if (failCounter > 0)
 				printFailed(testPassedSoundSourceList, sizeof(testPassedSoundSourceList));

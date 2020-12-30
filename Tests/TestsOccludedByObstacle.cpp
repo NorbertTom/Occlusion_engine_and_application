@@ -227,10 +227,9 @@ namespace Tests
 			testIsSoundSourceOccludedByObstacleResult[9] = test9(failCounter);
 			updateFunctions->resetLists();
 			int nrOfTests = sizeof(testIsSoundSourceOccludedByObstacleResult);
-			
-			std::string log = "Is Sound Source Occluded By Obstacle Tests passed: " +
-				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests);
-			PrintErrorLogToFile(log);
+
+			PrintErrorLogToFile("Is Sound Source Occluded By Obstacle Tests passed: " +
+				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests));
 
 			if (failCounter > 0)
 			{

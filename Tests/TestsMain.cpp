@@ -25,6 +25,7 @@ namespace Tests {
 		if (testOptions & TestOptions::PerformanceTests)
 		{
 			PrintErrorLogToFile("\nPerforming Performance Tests");
+			testPerformance::testMain();
 		}
 		if (testOptions & TestOptions::SomeFutureTests)
 		{
@@ -56,8 +57,7 @@ namespace Tests {
 		{
 			if (!*(testPassed + i))
 			{
-				std::string log = "ERROR: Test " + std::to_string(i) + " not passed";
-				PrintErrorLogToFile(log);
+				PrintErrorLogToFile("ERROR: Test " + std::to_string(i) + " not passed");
 			}
 		}
 	}

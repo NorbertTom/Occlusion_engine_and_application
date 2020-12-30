@@ -226,9 +226,8 @@ namespace Tests
 			updateFunctions->resetLists();
 			int nrOfTests = sizeof(testPassedAttenuation);
 			
-			std::string log = "If Set current attenuation on sources Works tests passed: " +
-				std::to_string(nrOfTests - failCounter)	+ "/" + std::to_string(nrOfTests);
-			PrintErrorLogToFile(log);
+			PrintErrorLogToFile("If Set current attenuation on sources Works tests passed: " +
+				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests));
 
 			if (failCounter > 0)
 				printFailed(testPassedAttenuation, sizeof(testPassedAttenuation));

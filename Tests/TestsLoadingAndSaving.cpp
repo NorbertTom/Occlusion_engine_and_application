@@ -249,9 +249,8 @@ namespace Tests
 			}
 			else
 			{
-				std::string log = "test0 failed, sources equal = " + std::to_string(sourcesEqual) + "/3, obstacles equal = " 
-					+ std::to_string(obstaclesEqual) + "/2,	receivers equal = " + std::to_string(receiversEqual) + "/3";
-				PrintErrorLogToFile(log);
+				PrintErrorLogToFile("test0 failed, sources equal = " + std::to_string(sourcesEqual) + "/3, obstacles equal = "
+					+ std::to_string(obstaclesEqual) + "/2,	receivers equal = " + std::to_string(receiversEqual) + "/3");
 				failCounter++;
 			}
 			return result;
@@ -326,9 +325,8 @@ namespace Tests
 			updateFunctions->resetLists();
 			int nrOfTests = sizeof(testPassedLoadingSaving);
 
-			std::string log = "Loading and Saving tests passed: " +
-				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests);
-			PrintErrorLogToFile(log);
+			PrintErrorLogToFile("Loading and Saving tests passed: " +
+				std::to_string(nrOfTests - failCounter) + "/" + std::to_string(nrOfTests));
 
 			if (failCounter > 0)
 				printFailed(testPassedLoadingSaving, sizeof(testPassedLoadingSaving));
@@ -457,11 +455,10 @@ namespace Tests
 			}
 			else
 			{
-				std::string log = "Sources equal = " + std::to_string(sourcesEqual) + "/" +
+				PrintErrorLogToFile("Sources equal = " + std::to_string(sourcesEqual) + "/" +
 					std::to_string(listOfSourcesPtr->getSourcesAmount()) + ", obstacles equal = "
 					+ std::to_string(obstaclesEqual) + "/" + std::to_string(listOfObstaclesPtr->getObstaclesAmount()) +
-					", receivers equal = " + std::to_string(receiversEqual) + "/" + std::to_string(listOfReceiversPtr->getReceiversAmount());
-				PrintErrorLogToFile(log);
+					", receivers equal = " + std::to_string(receiversEqual) + "/" + std::to_string(listOfReceiversPtr->getReceiversAmount()));
 			}
 			return result;
 		}
