@@ -10,10 +10,9 @@
 
 SoundSourceCalculator* soundSourceCalculator;
 
-void SoundSourceCalculator::setAllVirtualizations()
+void SoundSourceCalculator::setAllVirtualizations(Receiver* activeReceiverPtr)
 {
 	int nrOfSources = listOfSourcesPtr->getSourcesAmount();
-	Receiver* activeReceiverPtr = listOfReceiversPtr->getActive();
 	for (int i = 0; i < nrOfSources; i++)
 	{
 		SoundSource* sourcePtr = listOfSourcesPtr->getPtrByNr(i);
@@ -31,10 +30,9 @@ void SoundSourceCalculator::clearAllListsOfOccluders()
 	}
 }
 
-void SoundSourceCalculator::calculateAllAttenuations()
+void SoundSourceCalculator::calculateAllAttenuations(Receiver* activeReceiverPtr)
 {
 	const int nrOfSources = listOfSourcesPtr->getSourcesAmount();
-	Receiver* activeReceiverPtr = listOfReceiversPtr->getActive();
 	for (int i = 0; i < nrOfSources; i++)
 	{
 		SoundSource* soundSourcePtr = listOfSourcesPtr->getPtrByNr(i);
@@ -51,7 +49,7 @@ void SoundSourceCalculator::calculateAllAttenuations()
 		}
 		else
 		{
-			float occlAttenuation = calculateOcclusion(soundSourcePtr);
+			float occlAttenuation = calculateOcclusion(soundSourcePtr, activeReceiverPtr);
 			soundSourcePtr->setAttenuation(distAttenuation + occlAttenuation);
 		}
 	}
@@ -97,7 +95,7 @@ float SoundSourceCalculator::distanceAttenuation(SoundSource* sourcePtr, Receive
 	return result;
 }
 
-float SoundSourceCalculator::calculateOcclusion(SoundSource* sourcePtr) const
+float SoundSourceCalculator::calculateOcclusion(SoundSource* sourcePtr, Receiver* activeReceiverPtr) const
 {
 	float calculatedOcclusion = 0;
 	int nrOfObstacles = listOfObstaclesPtr->getObstaclesAmount();
@@ -105,7 +103,7 @@ float SoundSourceCalculator::calculateOcclusion(SoundSource* sourcePtr) const
 	for (int i = 0; i < nrOfObstacles; i++)
 	{
 		Obstacle* obstaclePtr = listOfObstaclesPtr->getPtrByNr(i);
-		bool isSourceOccludedByThisObstacle = IsOccludedByObstacle(sourcePtr, obstaclePtr);
+		bool isSourceOccludedByThisObstacle = IsOccludedByObstacle(sourcePtr, obstaclePtr, activeReceiverPtr);
 		if (isSourceOccludedByThisObstacle)
 		{
 			sourcePtr->addOccluder(obstaclePtr);
@@ -117,10 +115,10 @@ float SoundSourceCalculator::calculateOcclusion(SoundSource* sourcePtr) const
 }
 
 
-bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacle const * obstacPtr) const
+bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacle const * obstacPtr, Receiver* activeReceiverPtr) const
 {
-	float receiverX = listOfReceiversPtr->getActive()->getPosX();
-	float receiverY = listOfReceiversPtr->getActive()->getPosY();
+	float receiverX = activeReceiverPtr->getPosX();
+	float receiverY = activeReceiverPtr->getPosY();
 	float sourceX = sourcePtr->getPosX();
 	float sourceY = sourcePtr->getPosY();
 	float obstacleX1 = obstacPtr->getPosX1();
@@ -176,7 +174,7 @@ bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacl
 		BasicMath::MinMax(xmin, xmax, receiverX, sourceX);
 		if (xIntersection > xmin && xIntersection < xmax)
 		{
-			BasicMath::Line sourceRaycast = raycast(sourcePtr);
+			BasicMath::Line sourceRaycast = raycast(sourcePtr, activeReceiverPtr);
 			float ymin, ymax;
 			BasicMath::MinMax(ymin, ymax, obstacleY1, obstacleY2);
 			float yIntersection = xIntersection * sourceRaycast.a + sourceRaycast.b;
@@ -191,7 +189,7 @@ bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacl
 
 	else // nic nie jest pionowe
 	{
-		BasicMath::Line sourceRaycast = raycast(sourcePtr);
+		BasicMath::Line sourceRaycast = raycast(sourcePtr, activeReceiverPtr);
 		BasicMath::Line obstacleLine = obstacPtr->ObstacleLine();
 		float intersection = (obstacleLine.b - sourceRaycast.b) / (sourceRaycast.a - obstacleLine.a);
 		float xmin[2];
@@ -209,10 +207,10 @@ bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacl
 	}
 }
 
-BasicMath::Line SoundSourceCalculator::raycast(SoundSource* sourcePtr) const
+BasicMath::Line SoundSourceCalculator::raycast(SoundSource* sourcePtr, Receiver* activeReceiverPtr) const
 {
-	float receiverX = listOfReceiversPtr->getActive()->getPosX();
-	float receiverY = listOfReceiversPtr->getActive()->getPosY();
+	float receiverX = activeReceiverPtr->getPosX();
+	float receiverY = activeReceiverPtr->getPosY();
 	float sourceX = sourcePtr->getPosX();
 	float sourceY = sourcePtr->getPosY();
 

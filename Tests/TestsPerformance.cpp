@@ -22,6 +22,14 @@ namespace Tests {
 			populateWithSources(70);
 			populateWithObstacles(20);
 			listOfReceiversPtr->createReceiver(0, 0);
+			listOfReceiversPtr->createReceiver(0, 2);
+			listOfReceiversPtr->createReceiver(2, 0);
+			listOfReceiversPtr->createReceiver(10, -5);
+			listOfReceiversPtr->createReceiver(12, 0);
+			listOfReceiversPtr->createReceiver(2, 20);
+			listOfReceiversPtr->createReceiver(2, 4);
+			listOfReceiversPtr->createReceiver(-2, 10);
+			listOfReceiversPtr->activateById(0);
 			savingData->saveAll("PerfTest.bin");
 			{
 				BasicMath::Timer timer(resultStorage);
@@ -52,9 +60,6 @@ namespace Tests {
 				BasicMath::Timer timer(resultStorage);
 				updateFunctions->update();
 			}
-			// create sources
-			// create obstacles
-			// create receivers
 
 			//switch between receivers and remember times
 		}

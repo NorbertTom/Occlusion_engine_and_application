@@ -18,10 +18,10 @@ UpdateFunctions::~UpdateFunctions()
 void UpdateFunctions::update()
 {
 	soundSourceCalculator->clearAllListsOfOccluders();
-	if (auto receiver = listOfReceiversPtr->getActive())
+	if (Receiver* activeReceiverPtr = listOfReceiversPtr->getActive())
 	{
-		soundSourceCalculator->setAllVirtualizations();
-		soundSourceCalculator->calculateAllAttenuations();
+		soundSourceCalculator->setAllVirtualizations(activeReceiverPtr);
+		soundSourceCalculator->calculateAllAttenuations(activeReceiverPtr);
 	}
 	else // if no active Receivers exists
 	{
