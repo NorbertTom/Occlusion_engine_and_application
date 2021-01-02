@@ -76,5 +76,7 @@ namespace Tests {
 
 		void populateWithSources(const unsigned int quantity);
 		void populateWithObstacles(const unsigned int quantity);
+		void populateWithReceivers(const unsigned int quantity);
+		float calculateMean(float* pointerToFirstElement, const unsigned int quantity);
 	}
 }

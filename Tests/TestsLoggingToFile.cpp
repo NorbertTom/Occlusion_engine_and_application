@@ -61,8 +61,9 @@ namespace Tests
 		
 		for (int i = 0; i < quantity; i++)
 		{
-			file << *(firstNumber+i) << "\n";
+			file << *(firstNumber+i) << ", ";
 		}
+		file << "\n";
 		
 		file.close();
 	}

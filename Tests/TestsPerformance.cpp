@@ -21,52 +21,34 @@ namespace Tests {
 		{
 			populateWithSources(70);
 			populateWithObstacles(20);
-			listOfReceiversPtr->createReceiver(0, 0);
-			listOfReceiversPtr->createReceiver(0, 2);
-			listOfReceiversPtr->createReceiver(2, 0);
-			listOfReceiversPtr->createReceiver(10, -5);
-			listOfReceiversPtr->createReceiver(12, 0);
-			listOfReceiversPtr->createReceiver(2, 20);
-			listOfReceiversPtr->createReceiver(2, 4);
-			listOfReceiversPtr->createReceiver(-2, 10);
-			listOfReceiversPtr->activateById(0);
-			savingData->saveAll("PerfTest.bin");
-			{
-				BasicMath::Timer timer(resultStorage);
-				updateFunctions->update();
-			}
-			resultStorage++;
-			{
-				BasicMath::Timer timer(resultStorage);
-				updateFunctions->update();
-			}
-			resultStorage++;
-			{
-				BasicMath::Timer timer(resultStorage);
-				updateFunctions->update();
-			}
-			resultStorage++;
-			{
-				BasicMath::Timer timer(resultStorage);
-				updateFunctions->update();
-			}
-			resultStorage++;
-			{
-				BasicMath::Timer timer(resultStorage);
-				updateFunctions->update();
-			}
-			resultStorage++;
-			{
-				BasicMath::Timer timer(resultStorage);
-				updateFunctions->update();
-			}
+			populateWithReceivers(20);
+			//savingData->saveAll("PerfTest.bin");
 
-			//switch between receivers and remember times
+			for (int i = 0; i < 10; i++)
+			{
+				listOfReceiversPtr->activate(2*i);
+				BasicMath::Timer timer(resultStorage + i);
+				updateFunctions->update();
+			}
 		}
 
-		void test1()
+		void test1(float* resultStorage)
 		{
-			//delete some sources (like a half?) and see how it will work
+			populateWithSources(70);
+			populateWithObstacles(20);
+			populateWithReceivers(20);
+			
+			for (int i = 0; i < 20; i++)
+			{
+				listOfSourcesPtr->deleteSourceByNr(2 * i);
+			}
+
+			for (int i = 0; i < 10; i++)
+			{
+				listOfReceiversPtr->activate(2 * i);
+				BasicMath::Timer timer(resultStorage + i);
+				updateFunctions->update();
+			}
 		}
 
 		void test2()
@@ -95,16 +77,18 @@ namespace Tests {
 			
 			updateFunctions->resetLists();
 			test0(resultsStorage);
-			PrintToPerformanceLogFile(logFileName, "Test 0:");
+			PrintToPerformanceLogFile(logFileName, "Test 0 - max lists capacity\nIndividual results:");
 			PrintToPerformanceLogFile(logFileName, resultsStorage, 10);
+			PrintToPerformanceLogFile(logFileName, "Average time: " + std::to_string(calculateMean(resultsStorage, 10)) + "\n");
 			
 			for (int i = 0; i < 10; i++) { resultsStorage[i] = 0; }
 
 			updateFunctions->resetLists();
-			test1();
-			//PrintToPerformanceLogFile(logFileName, "Test 1:");
-			//PrintToPerformanceLogFile(logFileName, resultsStorage, 10);
-
+			test1(resultsStorage);
+			PrintToPerformanceLogFile(logFileName, "Test 1 - some sources deleted\nIndividual results:");
+			PrintToPerformanceLogFile(logFileName, resultsStorage, 10);
+			PrintToPerformanceLogFile(logFileName, "Average time: " + std::to_string(calculateMean(resultsStorage, 10)) + "\n");
+			updateFunctions->resetLists();
 
 			PrintErrorLogToFile("End of performance test");
 
@@ -215,7 +199,66 @@ namespace Tests {
 
 		void populateWithReceivers(const unsigned int quantity)
 		{
+			if (quantity > 20)
+			{
+				return;
+			}
 
+			BasicMath::Point point[20];
+			point[0].setPosX(0);
+			point[0].setPosY(0);
+			point[1].setPosX(0);
+			point[1].setPosY(2);
+			point[2].setPosX(2);
+			point[2].setPosY(0);
+			point[3].setPosX(10);
+			point[3].setPosY(-5);
+			point[4].setPosX(12);
+			point[4].setPosY(0);
+			point[5].setPosX(2);
+			point[5].setPosY(20);
+			point[6].setPosX(2);
+			point[6].setPosY(4);
+			point[7].setPosX(-2);
+			point[7].setPosY(10);
+			point[8].setPosX(-1);
+			point[8].setPosY(1);
+			point[9].setPosX(20);
+			point[9].setPosY(-30);
+			point[10].setPosX(5);
+			point[10].setPosY(-8);
+			point[11].setPosX(19);
+			point[11].setPosY(-24);
+			point[12].setPosX(-41);
+			point[12].setPosY(22);
+			point[13].setPosX(-31);
+			point[13].setPosY(-25);
+			point[14].setPosX(4.5);
+			point[14].setPosY(-42);
+			point[15].setPosX(43);
+			point[15].setPosY(-14);
+			point[16].setPosX(17.4);
+			point[16].setPosY(-13.1);
+			point[17].setPosX(5);
+			point[17].setPosY(-40.3);
+			point[18].setPosX(51.54);
+			point[18].setPosY(0.73);
+			point[19].setPosX(-1.3);
+			point[19].setPosY(-22.7);
+			for (int i = 0; i < quantity; i++)
+			{
+				listOfReceiversPtr->createReceiver(point[i].getPosX(), point[i].getPosY());
+			}
+		}
+
+		float calculateMean(float* pointerToFirstElement, const unsigned int quantity)
+		{
+			float sum = 0;
+			for (int i = 0; i < 10; i++)
+			{
+				sum = sum + pointerToFirstElement[i];
+			}
+			return sum / quantity;
 		}
 	}
 }
