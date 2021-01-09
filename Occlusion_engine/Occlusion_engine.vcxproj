@@ -29,6 +29,7 @@
     <ClInclude Include="Obstacle\ListOfObstaclesInterface.h" />
     <ClInclude Include="Obstacle\Obstacle.h" />
     <ClInclude Include="Obstacle\ObstacleInterface.h" />
+    <ClInclude Include="PerformanceDefines.h" />
     <ClInclude Include="Receiver\ListOfReceivers.h" />
     <ClInclude Include="Receiver\ListOfReceiversInterface.h" />
     <ClInclude Include="Receiver\Receiver.h" />

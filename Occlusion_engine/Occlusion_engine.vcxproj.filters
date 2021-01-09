@@ -84,6 +84,9 @@
     <ClInclude Include="NorMemoryPoolChunk.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="PerformanceDefines.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseClassesFunctions.cpp">

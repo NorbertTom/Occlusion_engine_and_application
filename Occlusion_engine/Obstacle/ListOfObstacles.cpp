@@ -3,10 +3,9 @@
 #include "ErrorLogging.h"
 #include "NorMemoryPool.h"
 #include "NorMemoryPoolChunk.h"
+#include "PerformanceDefines.h"
 
-#define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
-
-#ifdef UsingNorMemoryPool
+#ifdef ObstaclesUsingNorMemoryPool
 	SOUND_API NorMemoryPoolChunk* obstaclesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Obstacle), 50);
 	static const int limit = 50;
 #else
@@ -18,7 +17,7 @@ ListOfObstacles* listOfObstaclesPtr = new ListOfObstacles();
 
 ListOfObstacles::ListOfObstacles() : m_obstaclesAmountLimit(limit)
 {
-#ifdef UsingNorMemoryPool
+#ifdef ObstaclesUsingNorMemoryPool
 	// reserve memory from pool
 #else
 	m_listOfPointers.reserve(10);
@@ -29,7 +28,7 @@ ListOfObstacles::~ListOfObstacles()
 {
 	deleteAll();
 
-#ifdef UsingNorMemoryPool
+#ifdef ObstaclesUsingNorMemoryPool
 	delete obstaclesMemoryPool;
 #endif
 }
@@ -38,7 +37,7 @@ Obstacle* ListOfObstacles::addObstacle(ObstacleDescriptor& obstacleDescriptor)
 {
 	obstacleDescriptor.m_id = m_nextId;
 
-#ifdef UsingNorMemoryPool
+#ifdef ObstaclesUsingNorMemoryPool
 	Obstacle newObstacleStack(obstacleDescriptor);
 	auto allocator = obstaclesMemoryPool->addToPool(&newObstacleStack);
 	if (!allocator)
@@ -74,7 +73,7 @@ void ListOfObstacles::deleteObstacleByNr(int Nr)
 {
 	if (isListIndexValid(Nr))
 	{
-#ifdef UsingNorMemoryPool
+#ifdef ObstaclesUsingNorMemoryPool
 		obstaclesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
 		delete m_listOfPointers[Nr];

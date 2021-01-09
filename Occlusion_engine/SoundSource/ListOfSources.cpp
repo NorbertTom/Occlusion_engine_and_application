@@ -3,10 +3,9 @@
 #include "ErrorLogging.h"
 #include "NorMemoryPool.h"
 #include "NorMemoryPoolChunk.h"
+#include "PerformanceDefines.h"
 
-#define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
-
-#ifdef UsingNorMemoryPool
+#ifdef SourcesUsingNorMemoryPool
 	SOUND_API NorMemoryPoolChunk* sourcesMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(SoundSource), 70);
 	static const int limit = 70;
 #else
@@ -19,7 +18,7 @@ ListOfSources* listOfSourcesPtr = new ListOfSources();
 
 ListOfSources::ListOfSources() : m_sourcesAmountLimit(limit)
 {
-#ifdef UsingNorMemoryPool
+#ifdef SourcesUsingNorMemoryPool
 	// memory pool operations
 #else
 	m_listOfPointers.reserve(10);
@@ -30,7 +29,7 @@ ListOfSources::~ListOfSources()
 {
 	deleteAll();
 
-#ifdef UsingNorMemoryPool
+#ifdef SourcesUsingNorMemoryPool
 	delete sourcesMemoryPool;
 #endif
 }
@@ -39,7 +38,7 @@ SoundSource* ListOfSources::addSource(SoundSourceDescriptor &soundSourceDescript
 {
 	soundSourceDescriptor.m_id = m_nextId;
 
-#ifdef UsingNorMemoryPool
+#ifdef SourcesUsingNorMemoryPool
 	SoundSource newSourceStack(soundSourceDescriptor);
 	auto allocator = sourcesMemoryPool->addToPool(&newSourceStack);
 	if (!allocator)
@@ -75,7 +74,7 @@ void ListOfSources::deleteSourceByNr(int Nr)
 {
 	if (isListIndexValid(Nr))
 	{
-#ifdef UsingNorMemoryPool
+#ifdef SourcesUsingNorMemoryPool
 		sourcesMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
 		delete m_listOfPointers[Nr];

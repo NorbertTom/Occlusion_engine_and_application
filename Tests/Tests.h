@@ -21,6 +21,7 @@ namespace Tests {
 	void printFailed(bool* testPassed, int size);
 	void PrintErrorLogToFile(std::string &&message);
 	std::string CreateNewPerformanceLogFile(std::string &&message);
+	std::string CreateNewPerformanceLogFile();
 	void PrintToPerformanceLogFile(std::string& fileName, const float* firstNumber, const unsigned int quantity);
 	void PrintToPerformanceLogFile(std::string& fileName, std::string &&message);
 

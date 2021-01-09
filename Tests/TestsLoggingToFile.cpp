@@ -2,7 +2,9 @@
 
 #include <fstream>
 #include <io.h>
-
+#include <chrono>
+#include <ctime>
+#include "PerformanceDefines.h"
 
 namespace Tests
 {
@@ -26,32 +28,58 @@ namespace Tests
 		file.close();
 	}
 
+	std::string CreateNewPerformanceLogFile()
+	{
+		return CreateNewPerformanceLogFile("");
+	}
+
 	std::string CreateNewPerformanceLogFile(std::string &&message)
 	{
-		std::string rootFileName = "!PerformanceLog_";
-		std::string extension = ".txt";
-		int iterator = 0;
-		std::string workingName = rootFileName + std::to_string(iterator) + extension;
-		while (_access(workingName.c_str(), 0) == 0)
+		char* bufTime = new char[26];
+		auto timeNow = std::chrono::system_clock::now();
+		std::time_t timeNow_time_t = std::chrono::system_clock::to_time_t(timeNow);
+		ctime_s(bufTime, 26, &timeNow_time_t);
+		std::string timeStr = bufTime;
+		delete[] bufTime;
+		timeStr.resize(timeStr.size() - 1);
+		for (int i = 0; i < timeStr.length(); i++)
 		{
-			iterator++;
-			workingName = rootFileName + std::to_string(iterator) + extension;
-			if (iterator == 20)
+			if (timeStr[i] == ' ' || timeStr[i] == ':')
 			{
-				for (int i = 0; i < iterator; i++)
-				{
-					workingName = rootFileName + std::to_string(i) + extension;
-					remove(workingName.c_str());
-				}
-				iterator = 0;
+				timeStr[i] = '_';
 			}
 		}
+		
+		std::string fileName = "!PerformanceLog_";
+		fileName += timeStr;
+		fileName += ".txt";
+
+		// about configuration
+		std::string configuration = "Configuration = ";
+		configuration += CONFIGURATION;
+		configuration += "\n";
+
+		std::string memoryPoolOptions;
+#ifdef SourcesUsingNorMemoryPool
+		memoryPoolOptions += "Using Sources Memory Pool;\n";
+#endif
+#ifdef ObstaclesUsingNorMemoryPool
+		memoryPoolOptions += "Using Obstacles Memory Pool;\n";
+#endif
+#ifdef ReceiversUsingNorMemoryPool
+		memoryPoolOptions += "Using Receivers Memory Pool;\n";
+#endif
+		std::string otherOptions;
+#ifdef MultithreadUpdate
+		otherOptions += "Using Multithreaded Update Funcion;\n";
+#endif
+		// ----
 
 		std::ofstream file;
-		file.open(workingName);
-		file << message << "\n\n";
+		file.open(fileName);
+		file << configuration << memoryPoolOptions << otherOptions << message << "\n\n";
 		file.close();
-		return workingName;
+		return fileName;
 	}
 
 	void PrintToPerformanceLogFile(std::string& fileName, const float* firstNumber, const unsigned int quantity)

@@ -3,10 +3,9 @@
 #include "ErrorLogging.h"
 #include "NorMemoryPool.h"
 #include "NorMemoryPoolChunk.h"
+#include "PerformanceDefines.h"
 
-#define UsingNorMemoryPool // <- comment this line out if you do not want to use NorMemoryPool
-
-#ifdef UsingNorMemoryPool
+#ifdef ReceiversUsingNorMemoryPool
 	SOUND_API NorMemoryPoolChunk* receiversMemoryPool = new NorMemoryPoolChunk(norMemoryPool, sizeof(Receiver), 20);
 	static const int limit = 20;
 #else
@@ -18,7 +17,7 @@ ListOfReceivers* listOfReceiversPtr = new ListOfReceivers();
 
 ListOfReceivers::ListOfReceivers() : m_receiversAmountLimit(limit)
 {
-#ifdef UsingNorMemoryPool
+#ifdef ReceiversUsingNorMemoryPool
 	// ----
 #else
 	m_listOfPointers.reserve(5);
@@ -29,7 +28,7 @@ ListOfReceivers::~ListOfReceivers()
 {
 	deleteAll();
 
-#ifdef UsingNorMemoryPool
+#ifdef ReceiversUsingNorMemoryPool
 	delete receiversMemoryPool;
 #endif
 }
@@ -38,7 +37,7 @@ Receiver* ListOfReceivers::createReceiver(float X, float Y)
 {
 	deactivateAll();
 
-#ifdef UsingNorMemoryPool
+#ifdef ReceiversUsingNorMemoryPool
 	Receiver newReceiverStack(X, Y, m_nextId);
 	auto allocator = receiversMemoryPool->addToPool(&newReceiverStack);
 	if (!allocator)
@@ -73,7 +72,7 @@ void ListOfReceivers::deleteReceiverByNr(int Nr)
 {
 	if (isListIndexValid(Nr))
 	{
-#ifdef UsingNorMemoryPool
+#ifdef ReceiversUsingNorMemoryPool
 		receiversMemoryPool->deleteFromPool(m_listOfPointers[Nr]);
 #else
 		delete m_listOfPointers[Nr];

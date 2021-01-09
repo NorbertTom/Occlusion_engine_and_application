@@ -70,7 +70,7 @@ namespace Tests {
 		{
 			PrintErrorLogToFile("-------------------------------------");
 			PrintErrorLogToFile("Testing Performance...");
-			std::string logFileName = CreateNewPerformanceLogFile("Configuration = Debug");
+			std::string logFileName = CreateNewPerformanceLogFile();
 			
 			float resultsStorage[10];
 			for (int i = 0; i < 10; i++) { resultsStorage[i] = 0; }

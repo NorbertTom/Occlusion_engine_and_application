@@ -86,6 +86,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Occlusion_engine\SoundSource\;$(SolutionDir)Occlusion_engine\Obstacle\;$(SolutionDir)Occlusion_engine;$(SolutionDir)Occlusion_engine\Receiver\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);CONFIGURATION="$(ConfigurationName)";</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,6 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Occlusion_engine\SoundSource\;$(SolutionDir)Occlusion_engine\Obstacle\;$(SolutionDir)Occlusion_engine;$(SolutionDir)Occlusion_engine\Receiver\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);CONFIGURATION="$(ConfigurationName)";</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
