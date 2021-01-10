@@ -51,9 +51,29 @@ namespace Tests {
 			}
 		}
 
-		void test2()
+		void test2(float* resultStorage)
 		{
 			//delete most sources and add new ones (for memory fragmentation), see performance
+			populateWithSources(5);
+			populateWithObstacles(4);
+			populateWithReceivers(10);
+			populateWithSources(5);
+			populateWithObstacles(4);
+			populateWithReceivers(10); 
+			populateWithSources(5);
+			populateWithObstacles(4);
+			populateWithSources(5);
+			populateWithObstacles(4);
+			populateWithSources(5);
+			populateWithObstacles(4);
+			populateWithSources(35);
+
+			for (int i = 0; i < 10; i++)
+			{
+				listOfReceiversPtr->activate(2 * i);
+				BasicMath::Timer timer(resultStorage + i);
+				updateFunctions->update();
+			}
 		}
 
 		void test3()
@@ -88,11 +108,18 @@ namespace Tests {
 			PrintToPerformanceLogFile(logFileName, "Test 1 - some sources deleted\nIndividual results:");
 			PrintToPerformanceLogFile(logFileName, resultsStorage, 10);
 			PrintToPerformanceLogFile(logFileName, "Average time: " + std::to_string(calculateMean(resultsStorage, 10)) + "\n");
+			
+			for (int i = 0; i < 10; i++) { resultsStorage[i] = 0; }
+			
 			updateFunctions->resetLists();
+			test2(resultsStorage);
+			PrintToPerformanceLogFile(logFileName, "Test 2 - max capacity, memory fragmented\nIndividual results:");
+			PrintToPerformanceLogFile(logFileName, resultsStorage, 10);
+			PrintToPerformanceLogFile(logFileName, "Average time: " + std::to_string(calculateMean(resultsStorage, 10)) + "\n");
 
 			PrintErrorLogToFile("End of performance test");
 
-
+			updateFunctions->resetLists();
 			return 0;
 		}
 

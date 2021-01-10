@@ -69,10 +69,8 @@ namespace Tests
 #ifdef ReceiversUsingNorMemoryPool
 		memoryPoolOptions += "Using Receivers Memory Pool;\n";
 #endif
-		std::string otherOptions;
-#ifdef MultithreadUpdate
-		otherOptions += "Using Multithreaded Update Funcion;\n";
-#endif
+		std::string otherOptions = "";
+
 		// ----
 
 		std::ofstream file;

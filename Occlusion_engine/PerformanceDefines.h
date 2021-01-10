@@ -9,5 +9,3 @@
 #define ReceiversUsingNorMemoryPool
 
 // ----------------------------------------------
-
-#define MultithreadUpdate
