@@ -42,6 +42,7 @@ bool SavingData::saveAllToBinFile(std::string& fileName)
 		saveSuccess[i] = false;
 	}
 	std::ofstream file;
+	fileName = "..\\bin\\" + fileName;
 	file.open(fileName, std::ios::out | std::ios::binary | std::ios::trunc);
 	
 	if (file.is_open())

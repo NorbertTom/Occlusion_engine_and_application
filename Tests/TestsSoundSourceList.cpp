@@ -22,7 +22,8 @@ namespace Tests
 			const int amount = 10;
 			for (int i = 0; i < amount; i++)
 			{
-				SoundSourceDescriptor sourceDesc(i, i + 2, 100, 100, true, AttenuationType::PointSource);
+				float j = static_cast<float>(i);
+				SoundSourceDescriptor sourceDesc(j, j + 2, 100, 100, true, AttenuationType::PointSource);
 				listOfSourcesPtr->addSource(sourceDesc);
 			}
 			int SourcesQuantity = listOfSourcesPtr->getSourcesAmount();
@@ -43,7 +44,8 @@ namespace Tests
 			const int amount = 20;
 			for (int i = 0; i < amount; i++)
 			{
-				SoundSourceDescriptor sourceDesc(i, 2*i + 5, 100, 100, true, AttenuationType::PointSource);
+				float j = static_cast<float>(i);
+				SoundSourceDescriptor sourceDesc(j, 2*j + 5, 100, 100, true, AttenuationType::PointSource);
 				listOfSourcesPtr->addSource(sourceDesc);
 			}
 			for (int i = 10; i > 0; i--)
@@ -68,7 +70,8 @@ namespace Tests
 			int amount = 20;
 			for (int i = 0; i < amount; i++)
 			{
-				SoundSourceDescriptor sourceDesc(i + 2, i, 85, 100, true, AttenuationType::PointSource);
+				float j = static_cast<float>(i);
+				SoundSourceDescriptor sourceDesc(j + 2, j, 85, 100, true, AttenuationType::PointSource);
 				listOfSourcesPtr->addSource(sourceDesc);
 			}
 			for (int i = 10; i > 0; i--)
@@ -78,7 +81,8 @@ namespace Tests
 			amount = 30;
 			for (int i = 0; i < amount; i++)
 			{
-				SoundSourceDescriptor sourceDesc(i - 2, i+5, 85, 100, true, AttenuationType::PointSource);
+				float j = static_cast<float>(i);
+				SoundSourceDescriptor sourceDesc(j - 2, j+5, 85, 100, true, AttenuationType::PointSource);
 				listOfSourcesPtr->addSource(sourceDesc);
 			}
 			for (int i = 5; i > 0; i--)

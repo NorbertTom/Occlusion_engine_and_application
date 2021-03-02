@@ -16,11 +16,11 @@ namespace Tests
 
 		if (TestsLogFileCreated)
 		{
-			file.open("!TestsLog.txt", std::ios::app);
+			file.open("..\\bin\\!TestsLog.txt", std::ios::app);
 		}
 		else
 		{
-			file.open("!TestsLog.txt");
+			file.open("..\\bin\\!TestsLog.txt");
 			TestsLogFileCreated = true;
 		}
 		
@@ -50,7 +50,7 @@ namespace Tests
 			}
 		}
 		
-		std::string fileName = "!PerformanceLog_";
+		std::string fileName = "..\\bin\\!PerformanceLog_";
 		fileName += timeStr;
 		fileName += ".txt";
 
@@ -85,7 +85,7 @@ namespace Tests
 		std::ofstream file;
 		file.open(fileName.c_str(), std::ios::app);
 		
-		for (int i = 0; i < quantity; i++)
+		for (unsigned int i = 0; i < quantity; i++)
 		{
 			file << *(firstNumber+i) << ", ";
 		}

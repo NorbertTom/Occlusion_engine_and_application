@@ -65,7 +65,7 @@ namespace BasicMath {
 		using namespace std::literals::chrono_literals;
 		end = std::chrono::high_resolution_clock::now();
 		duration = end - start;
-		float ms = duration.count() * 1000.0f;
+		float ms = static_cast<float>(duration.count()) * 1000.0f;
 		if (m_ptr)
 		{
 			*m_ptr = ms;

@@ -19,11 +19,11 @@ namespace ErrorLogging {
 
 		if (fileCreated)
 		{
-			file.open("Log.txt", std::ios::app);
+			file.open("..\\bin\\Log.txt", std::ios::app);
 		}
 		else
 		{
-			file.open("Log.txt");
+			file.open("..\\bin\\Log.txt");
 			fileCreated = true;
 		}
 

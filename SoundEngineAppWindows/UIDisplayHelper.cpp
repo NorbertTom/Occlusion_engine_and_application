@@ -15,7 +15,7 @@ namespace UIDisplayHelper
 			if (i > dotPosition + precision)
 			{
 				tempString[i] = NULL;
-				i = tempString.length();
+				i = static_cast<int>(tempString.length());
 			}
 		}
 		tempString.resize(dotPosition + precision + 2);
@@ -65,7 +65,7 @@ namespace UIDisplayHelper
 			{
 				if (hasDot)
 				{
-					i = string.length();
+					i = static_cast<int>(string.length());
 					validFloat = false;
 				}
 				else
@@ -77,7 +77,7 @@ namespace UIDisplayHelper
 			{
 				if (hasDot)
 				{
-					i = string.length();
+					i = static_cast<int>(string.length());
 					validFloat = false;
 				}
 				else
@@ -90,13 +90,13 @@ namespace UIDisplayHelper
 			{
 				if (i != 0)
 				{
-					i = string.length();
+					i = static_cast<int>(string.length());
 					validFloat = false;
 				}
 			}
 			else
 			{
-				i = string.length();
+				i = static_cast<int>(string.length());
 				validFloat = false;
 			}
 		}
@@ -117,7 +117,7 @@ namespace UIDisplayHelper
 			else
 			{
 				result = false;
-				i = string.length();
+				i = static_cast<int>(string.length());
 			}
 		}
 		return result;

@@ -22,7 +22,8 @@ namespace Tests
 			const int amount = 10;
 			for (int i = 0; i < amount; i++)
 			{
-				ObstacleDescriptor obstacleDescriptor(i, i + 2, i + 1, i + 3, i+10);
+				float j = static_cast<float>(i);
+				ObstacleDescriptor obstacleDescriptor(j, j + 2, j + 1, j + 3, j+10);
 				listOfObstaclesPtr->addObstacle(obstacleDescriptor);
 			}
 			int ObstacleQuantity = listOfObstaclesPtr->getObstaclesAmount();
@@ -43,7 +44,8 @@ namespace Tests
 			const int amount = 20;
 			for (int i = 0; i < amount; i++)
 			{
-				ObstacleDescriptor obstacleDescriptor(i, i + 2, i + 1, i + 3, i + 10);
+				float j = static_cast<float>(i);
+				ObstacleDescriptor obstacleDescriptor(j, j + 2, j + 1, j + 3, j + 10);
 				listOfObstaclesPtr->addObstacle(obstacleDescriptor);
 			}
 			for (int i = 10; i > 0; i--)
@@ -68,7 +70,8 @@ namespace Tests
 			int amount = 20;
 			for (int i = 0; i < amount; i++)
 			{
-				ObstacleDescriptor obstacleDescriptor(i, i + 2, i + 1, i + 3, i + 10);
+				float j = static_cast<float>(i);
+				ObstacleDescriptor obstacleDescriptor(j, j + 2, j + 1, j + 3, j + 10);
 				listOfObstaclesPtr->addObstacle(obstacleDescriptor);
 			}
 			for (int i = 10; i > 0; i--)
@@ -78,7 +81,8 @@ namespace Tests
 			amount = 30;
 			for (int i = 0; i < amount; i++)
 			{
-				ObstacleDescriptor obstacleDescriptor(i, i + 2, i + 1, i + 3, i + 10);
+				float j = static_cast<float>(i);
+				ObstacleDescriptor obstacleDescriptor(j, j + 2, j + 1, j + 3, j + 10);
 				listOfObstaclesPtr->addObstacle(obstacleDescriptor);
 			}
 			for (int i = 5; i > 0; i--)

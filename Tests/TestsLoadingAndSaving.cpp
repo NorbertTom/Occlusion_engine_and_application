@@ -222,21 +222,21 @@ namespace Tests
 			int obstaclesEqual = 0;
 			int receiversEqual = 0;
 			// CHECK IF THEY ARE EQUAL
-			for (int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
+			for (unsigned int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
 			{
 				if (testSourcePreSave[i] == testSourcePostLoad[i])
 				{
 					sourcesEqual++;
 				}
 			}
-			for (int i = 0; i < listOfObstaclesPtr->getObstaclesAmount(); i++)
+			for (unsigned int i = 0; i < listOfObstaclesPtr->getObstaclesAmount(); i++)
 			{
 				if (testObstaclePreSave[i] == testObstaclePostLoad[i])
 				{
 					obstaclesEqual++;
 				}
 			}
-			for (int i = 0; i < listOfReceiversPtr->getReceiversAmount(); i++)
+			for (unsigned int i = 0; i < listOfReceiversPtr->getReceiversAmount(); i++)
 			{
 				if (testReceiverPreSave[i] == testReceiverPostLoad[i])
 				{
@@ -341,10 +341,10 @@ namespace Tests
 			std::vector<TestSoundSource> testSourcePreSave(randomNrOfSources);
 			for (int i = 0; i < randomNrOfSources; i++)
 			{
-				int randX = -10 + rand() % 20;
-				int randY = -20 + rand() % 30;
-				int randLwa = 80 + rand() % 50;
-				int randMaxDistance = 70 + rand() % 100;
+				float randX = -10 + static_cast<float>(rand() % 20);
+				float randY = -20 + static_cast<float>(rand() % 30);
+				float randLwa = 80 + static_cast<float>(rand() % 50);
+				float randMaxDistance = 70 + static_cast<float>(rand() % 100);
 				bool randIsOccludable = static_cast<bool>(rand() % 1);
 				AttenuationType randAttenuationType = static_cast<AttenuationType>(rand() % 3);
 				SoundSourceDescriptor sourceDescriptor(randX, randY, randLwa, randMaxDistance, randIsOccludable, randAttenuationType);
@@ -355,11 +355,11 @@ namespace Tests
 			std::vector<TestObstacle> testObstaclePreSave(randomNrOfObstacles);
 			for (int i = 0; i < randomNrOfObstacles; i++)
 			{
-				int randX1 = -20 + rand() % 40;
-				int randY1 = -10 + rand() % 20;
-				int randX2 = -15 + rand() % 25;
-				int randY2 = -17 + rand() % 30;
-				int randDampening = 10 + rand() % 30;
+				float randX1 = -20 + static_cast<float>(rand() % 40);
+				float randY1 = -10 + static_cast<float>(rand() % 20);
+				float randX2 = -15 + static_cast<float>(rand() % 25);
+				float randY2 = -17 + static_cast<float>(rand() % 30);
+				float randDampening = 10 + static_cast<float>(rand() % 30);
 				ObstacleDescriptor obstacleDescriptor(randX1, randY1, randX2, randY2, randDampening);
 				obstacle[i] = listOfObstaclesPtr->addObstacle(obstacleDescriptor);
 			}
@@ -369,8 +369,8 @@ namespace Tests
 			std::vector<TestReceiver> testReceiverPreSave(randomNrOfReceivers);
 			for (int i = 0; i < randomNrOfReceivers; i++)
 			{
-				int randX = -20 + rand() % 40;
-				int randY = -20 + rand() % 35;
+				float randX = -20 + static_cast<float>(rand() % 40);
+				float randY = -20 + static_cast<float>(rand() % 35);
 				receiver[i] = listOfReceiversPtr->createReceiver(randX, randY);
 			}
 			listOfReceiversPtr->activate(rand() % randomNrOfReceivers);

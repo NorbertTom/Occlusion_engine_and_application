@@ -113,7 +113,7 @@ void ListOfReceivers::deleteAllButActive()
 Receiver* ListOfReceivers::getActive() const
 {
 	Receiver* activePtr = nullptr;
-	for (int i = 0; i < m_receiversAmount; i++)
+	for (unsigned int i = 0; i < m_receiversAmount; i++)
 	{
 		if (getPtrByNr(i)->ifActive())
 		{
@@ -138,7 +138,7 @@ Receiver* ListOfReceivers::operator[](int Nr) const
 
 int ListOfReceivers::getListNrById(int Id) const
 {
-	for (int i = 0; i < m_receiversAmount; i++)
+	for (unsigned int i = 0; i < m_receiversAmount; i++)
 	{
 		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
@@ -163,7 +163,7 @@ Receiver* ListOfReceivers::getPtrByNr(int Nr) const
 
 Receiver* ListOfReceivers::getPtrById(int id) const
 {
-	for (int i = 0; i < m_receiversAmount; i++)
+	for (unsigned int i = 0; i < m_receiversAmount; i++)
 	{
 		if (getPtrByNr(i) && getPtrByNr(i)->getId() == id)
 		{
@@ -193,7 +193,7 @@ void ListOfReceivers::activateById(int id) const
 
 void ListOfReceivers::deactivateAll() const
 {
-	for (int i = 0; i < m_receiversAmount; i++)
+	for (unsigned int i = 0; i < m_receiversAmount; i++)
 	{
 		if (getPtrByNr(i))
 		{

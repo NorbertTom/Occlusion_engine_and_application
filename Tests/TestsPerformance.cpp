@@ -132,7 +132,7 @@ namespace Tests {
 			bool isOccludable = true;
 			AttenuationType attenType = AttenuationType::PointSource;
 
-			for (int i = 0; i < quantity; i++)
+			for (unsigned int i = 0; i < quantity; i++)
 			{
 				if (i % 4 == 0)
 				{
@@ -182,7 +182,7 @@ namespace Tests {
 			bool isOccludable = true;
 			AttenuationType attenType = AttenuationType::PointSource;
 
-			for (int i = 0; i < quantity; i++)
+			for (unsigned int i = 0; i < quantity; i++)
 			{
 				if (i % 4 == 0)
 				{
@@ -260,19 +260,19 @@ namespace Tests {
 			point[12].setPosY(22);
 			point[13].setPosX(-31);
 			point[13].setPosY(-25);
-			point[14].setPosX(4.5);
+			point[14].setPosX(4.5f);
 			point[14].setPosY(-42);
 			point[15].setPosX(43);
 			point[15].setPosY(-14);
-			point[16].setPosX(17.4);
-			point[16].setPosY(-13.1);
+			point[16].setPosX(17.4f);
+			point[16].setPosY(-13.1f);
 			point[17].setPosX(5);
-			point[17].setPosY(-40.3);
-			point[18].setPosX(51.54);
-			point[18].setPosY(0.73);
-			point[19].setPosX(-1.3);
-			point[19].setPosY(-22.7);
-			for (int i = 0; i < quantity; i++)
+			point[17].setPosY(-40.3f);
+			point[18].setPosX(51.54f);
+			point[18].setPosY(0.73f);
+			point[19].setPosX(-1.3f);
+			point[19].setPosY(-22.7f);
+			for (unsigned int i = 0; i < quantity; i++)
 			{
 				listOfReceiversPtr->createReceiver(point[i].getPosX(), point[i].getPosY());
 			}

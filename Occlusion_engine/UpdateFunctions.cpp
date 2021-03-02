@@ -25,7 +25,7 @@ void UpdateFunctions::update()
 	}
 	else // if no active Receivers exists
 	{
-		for (int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
+		for (unsigned int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
 		{
 			SoundSource* source = listOfSourcesPtr->getPtrByNr(i);
 			source->setIsVirtualized(true);

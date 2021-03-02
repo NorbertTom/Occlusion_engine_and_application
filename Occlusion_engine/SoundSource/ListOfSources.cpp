@@ -97,7 +97,7 @@ void ListOfSources::deleteAll()
 
 SoundSource* ListOfSources::getPtrById(int Id) const
 {
-	for (int i = 0; i < m_sourcesAmount; i++)
+	for (unsigned int i = 0; i < m_sourcesAmount; i++)
 	{
 		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{
@@ -121,7 +121,7 @@ SoundSource* ListOfSources::getPtrByNr(int Nr) const
 
 int ListOfSources::getListNrById(int Id) const
 {
-	for (int i = 0; i < m_sourcesAmount; i++)
+	for (unsigned int i = 0; i < m_sourcesAmount; i++)
 	{
 		if (getPtrByNr(i) && getPtrByNr(i)->getId() == Id)
 		{

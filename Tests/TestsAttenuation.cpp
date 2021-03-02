@@ -41,7 +41,7 @@ namespace Tests
 			listOfSourcesPtr->addSource(sourceDescriptor[4]);
 			updateFunctions->update();
 			
-			for (int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
+			for (unsigned int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
 			{
 				if (listOfSourcesPtr->getPtrByNr(i)->getCurrentAttenuation() != 0)
 				{
@@ -115,8 +115,8 @@ namespace Tests
 			listOfReceiversPtr->createReceiver(10, 5);
 			Receiver* listener = listOfReceiversPtr->getActive();
 			SoundSourceDescriptor sourceDescriptor;
-			sourceDescriptor.m_x = 10.1;
-			sourceDescriptor.m_y = 5.1;
+			sourceDescriptor.m_x = 10.1f;
+			sourceDescriptor.m_y = 5.1f;
 			for (int i = 0; i < 60; i++)
 			{
 				listOfSourcesPtr->addSource(sourceDescriptor);
@@ -125,14 +125,14 @@ namespace Tests
 			{
 				listOfSourcesPtr->deleteSourceByNr(i);
 			}
-			sourceDescriptor.m_x = 10;
-			sourceDescriptor.m_y = 5.1;
+			sourceDescriptor.m_x = 10.0f;
+			sourceDescriptor.m_y = 5.1f;
 			for (int i = 0; i < 30; i++)
 			{
 				listOfSourcesPtr->addSource(sourceDescriptor);
 			}
 			updateFunctions->update();
-			for (int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
+			for (unsigned int i = 0; i < listOfSourcesPtr->getSourcesAmount(); i++)
 			{
 				if (listOfSourcesPtr->getPtrByNr(i)->getCurrentAttenuation() != 0)
 				{
