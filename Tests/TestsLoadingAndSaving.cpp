@@ -198,7 +198,8 @@ namespace Tests
 			}
 
 			updateFunctions->update();
-			std::string fileName = "testSave.bin";
+			std::string filepath = getExecutableFilePath();
+			std::string fileName = filepath + "testSave.bin";
 			savingData->saveAll(fileName);
 			updateFunctions->resetLists();
 			loadingData->loadDataFromFile(fileName);
@@ -397,8 +398,8 @@ namespace Tests
 			{
 				updateFunctions->update();
 			}
-
-			std::string fileName = "testSave.bin";
+			std::string filepath = getExecutableFilePath();
+			std::string fileName = filepath + "testSave.bin";
 			savingData->saveAll(fileName);
 			updateFunctions->resetLists();
 			loadingData->loadDataFromFile(fileName);

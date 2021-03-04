@@ -38,7 +38,6 @@ bool LoadingData::loadDataFromFile(std::string& fileName)
 	bool isLoadingSuccesfull = false;
 	FileUtils::addExtensionToFilename(fileName);
 	std::ifstream file;
-	fileName = "..\\bin\\" + fileName;
 	file.open(fileName, std::ios::in | std::ios::binary);
 	if (file.is_open())
 	{

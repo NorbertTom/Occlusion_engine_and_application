@@ -22,8 +22,10 @@ namespace Tests {
 	void PrintErrorLogToFile(std::string &&message);
 	std::string CreateNewPerformanceLogFile(std::string &&message);
 	std::string CreateNewPerformanceLogFile();
+	std::string getExecutableFilePath(); 
 	void PrintToPerformanceLogFile(std::string& fileName, const float* firstNumber, const unsigned int quantity);
 	void PrintToPerformanceLogFile(std::string& fileName, std::string &&message);
+	
 
 	namespace testIsSoundSourceOccludedByObstacle
 	{

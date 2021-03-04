@@ -4,23 +4,41 @@
 #include <io.h>
 #include <chrono>
 #include <ctime>
+#include <windows.h>
 #include "PerformanceDefines.h"
 
 namespace Tests
 {
 	static bool TestsLogFileCreated = false;
 
+	std::string getExecutableFilePath()
+	{
+		TCHAR buffer[MAX_PATH] = { 0 };
+		GetModuleFileName(NULL, buffer, MAX_PATH);
+		std::string path = buffer;
+		for (int i = static_cast<int>(path.length()); i > 0; i--)
+		{
+			if (path[i] == '\\')
+			{
+				path.resize(i+1); // won't overflow, no worries
+				break;
+			}
+		}
+		return path;
+	}
+	
 	void PrintErrorLogToFile(std::string &&message)
 	{
 		std::ofstream file;
+		std::string filepath = getExecutableFilePath();
 
 		if (TestsLogFileCreated)
 		{
-			file.open("..\\bin\\!TestsLog.txt", std::ios::app);
+			file.open(filepath + "!TestsLog.txt", std::ios::app);
 		}
 		else
 		{
-			file.open("..\\bin\\!TestsLog.txt");
+			file.open(filepath + "!TestsLog.txt");
 			TestsLogFileCreated = true;
 		}
 		
@@ -49,8 +67,9 @@ namespace Tests
 				timeStr[i] = '_';
 			}
 		}
-		
-		std::string fileName = "..\\bin\\!PerformanceLog_";
+
+		std::string filepath = getExecutableFilePath();
+		std::string fileName = filepath + "!PerformanceLog_";
 		fileName += timeStr;
 		fileName += ".txt";
 
