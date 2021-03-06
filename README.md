@@ -17,24 +17,24 @@ GUI made using <a href="https://www.wxwidgets.org/">wxWidgets</a>.
 
 ## Features
 
-##### Walk with active Receiver
+#### Walk with active Receiver
 Using buttons user can move active receiver by one unit (meter) in any direction they want and observe what happens with sound sources - how it
 affects attenuation and occlusion.
 
-##### Load & Save
+#### Load & Save
 User can save the current state of the program and load it whenever they want. Data is stored in a binary file.
 
-##### Memory
+#### Memory
 <img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Memory_window.jpg" alt = "Memory Window" width = "200"><br>
 
 If using NorMemoryPool (more details in <i>Implementation details</i> section)
 information regarding available and in-use memory is displayed.
 
-##### Adding, deleting and editing objects
+#### Adding, deleting and editing objects
 Objects can be added, deleted or edited using GUI. All objects' values can be changed apart from the ID which is added automatically
 by the occlusion engine.
 
-###### Sound Sources
+##### Sound Sources
 <img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/SoundSources_window.jpg" alt="Sound sources Window" width = "700" ><br>
 
 * <i>x</i> and <i>y</i> are coordinates of the source.
@@ -44,13 +44,13 @@ by the occlusion engine.
 and receiver.
 * <i>AttenuationType</i> can be set to PointSource, LineSource or NoAttenuation; it describes how much distance affects source's attenuation.
 
-###### Obstacles
+##### Obstacles
 <img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="600"><br>
 
 * <i>x1</i>, <i>y1</i>, <i>x2</i> and <i>y2</i> are coordinates of two points between which the obstacle exists.
 * <i>dampening</i> is the value by which sound source gets attenuated if the obstacle is in the way of sound wave.
 
-###### Receivers
+##### Receivers
 <img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Receivers_window.jpg" alt="Receivers window" width="400"><br>
 
 * <i>x</i> and <i>y</i> are coordinates of the receiver.
