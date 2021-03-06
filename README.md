@@ -4,7 +4,7 @@
 based on the source's characteristics, distance between them and occlusion by any <b>obstacles</b> on the way in two-dimensional space.<br>
 Below you can find information regarding program features from a user perspective followed by some code implementation details.
 
-<img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Main_window.jpg" alt="Main window" width="500"><br>
+<img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/master/readme_imgs/Main_window.jpg" alt="Main window" width="500"><br>
 
 GUI made using <a href="https://www.wxwidgets.org/">wxWidgets</a>.
 
@@ -25,7 +25,7 @@ affects attenuation and occlusion.
 User can save the current state of the program and load it whenever they want. Data is stored in a binary file.
 
 #### Memory
-<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Memory_window.jpg" alt = "Memory Window" width = "200"><br>
+<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/master/readme_imgs/Memory_window.jpg" alt = "Memory Window" width = "200"><br>
 
 If using NorMemoryPool (more details in <i>Implementation details</i> section)
 information regarding available and in-use memory is displayed.
@@ -35,7 +35,7 @@ Objects can be added, deleted or edited using GUI. All objects' parameters can b
 by the engine.
 
 ##### Sound Sources
-<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/SoundSources_window.jpg" alt="Sound sources Window" width = "700" ><br>
+<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/master/readme_imgs/SoundSources_window.jpg" alt="Sound sources Window" width = "700" ><br>
 
 * <i>x</i>, <i>y</i> - coordinates of the source;
 * <i>Lwa</i> - power level of the source. This parameter only describes the source and is not taken into account during calculations;
@@ -45,13 +45,13 @@ and receiver;
 * <i>AttenuationType</i> - can be set to PointSource, LineSource or NoAttenuation; it affects how much source is attenuated at given distance.
 
 ##### Obstacles
-<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="600"><br>
+<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/master/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="600"><br>
 
 * <i>x1</i>, <i>y1</i>, <i>x2</i>, <i>y2</i> - coordinates of two points of line segment that defines the obstacle;
 * <i>dampening</i> - this value is added to source's attenuation if occlusion from that obstacle happens.
 
 ##### Receivers
-<img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Receivers_window.jpg" alt="Receivers window" width="400"><br>
+<img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/master/readme_imgs/Receivers_window.jpg" alt="Receivers window" width="400"><br>
 
 * <i>x</i>, <i>y</i> - coordinates of the receiver;
 * <i>isActive</i> - determines if chosen receiver should be set to active. Engine works only when precisely one receiver is active.
