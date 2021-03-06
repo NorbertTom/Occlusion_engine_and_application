@@ -3,6 +3,7 @@
 <i>Occlusion engine and application</i> is a program that calculates current attenuation of each <b>source</b> for an active <b>receiver</b>
 based on the source's characteristics, distance between them and occlusion by any <b>obstacles</b> on the way in two-dimensional space.<br>
 Below you can find information regarding program features from a user perspective followed by some code implementation details.
+
 <img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Main_window.jpg" alt="Main window" width="500"><br>
 
 GUI made using <a href="https://www.wxwidgets.org/">wxWidgets</a>.
@@ -34,7 +35,7 @@ Objects can be added, deleted or edited using GUI. All objects' values can be ch
 by the occlusion engine.
 
 ###### Sound Sources
-<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/SoundSources_window.jpg" alt="Sound sources Window" width = "600" ><br>
+<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/SoundSources_window.jpg" alt="Sound sources Window" width = "700" ><br>
 
 * <i>x</i> and <i>y</i> are coordinates of the source. [m]
 * <i>Lwa</i> is a power level of the source. During first iterations of the program it was meant to play a role in
@@ -45,7 +46,7 @@ and receiver.
 * <i>AttenuationType</i> can be set to PointSource, LineSource or NoAttenuation; it describes how much distance affects source's attenuation.
 
 ###### Obstacles
-<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="500"><br>
+<img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="600"><br>
 
 * <i>x1</i>, <i>y1</i>, <i>x2</i> and <i>y2</i> are coordinates of two points between which the obstacle exists. [m]
 * <i>dampening</i> is the value by which sound source gets attenuated if the obstacle is in the way of sound wave. [dB]
