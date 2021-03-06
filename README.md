@@ -47,7 +47,7 @@ and receiver;
 ##### Obstacles
 <img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="600"><br>
 
-* <i>x1</i>, <i>y1</i>, <i>x2</i>, <i>y2</i> - coordinates of two points of line segment that define the obstacle;
+* <i>x1</i>, <i>y1</i>, <i>x2</i>, <i>y2</i> - coordinates of two points of line segment that defines the obstacle;
 * <i>dampening</i> - this value is added to source's attenuation if occlusion from that obstacle happens.
 
 ##### Receivers
@@ -90,5 +90,5 @@ They would have been more robust and would have helped to keep some methods simp
 * Objects’ lists could have been constructed differently so that singletons wouldn’t need to exist.
 I’m aware that singleton is a bad practice, but I couldn’t think of anything better at the time of writing the <i>Occlusion Engine</i>.
 I tried using template class, but it resulted in more complicated code, so that I got back to the idea of using three singletons.
-* ListOfSources, ListOfObstacles and ListOfReceivers could have been wrapped in some class and then exposed as extern,
+* ListOfSources, ListOfObstacles and ListOfReceivers could have been wrapped in some class and then exposed,
 instead of being declared as globals that can be accessed from outside the engine. On the other hand that would add complexity to the engine itself.
