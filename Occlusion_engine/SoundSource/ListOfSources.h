@@ -32,4 +32,3 @@ private:
 };
 
 extern SOUND_API ListOfSources* listOfSourcesPtr;
-//extern NorMemoryPoolChunk* sourcesMemoryPool;

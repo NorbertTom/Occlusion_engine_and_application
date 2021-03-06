@@ -13,8 +13,7 @@ Obstacle::~Obstacle()
 }
 
 BasicMath::Line Obstacle::ObstacleLine() const
-{ // czemu to osobna metoda? Nie mo¿e siê robiæ gdizeœ indziej?
-	// X1, Y1, X2 i Y2 mog³yby zostaæ przekazane jako parametry?
+{
 	BasicMath::Line line((getPosY1() - getPosY2()) / (getPosX1() - getPosX2()), getPosY2() - 
 		(getPosX2()*(getPosY1() - getPosY2()) / (getPosX1() - getPosX2())));
 	return line;

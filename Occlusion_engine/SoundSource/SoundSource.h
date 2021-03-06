@@ -84,7 +84,6 @@ private:
 	bool m_isVirtualized = false;
 	bool m_isOccluded = false;
 	float m_currentAttenuation = 0;
-//	std::vector<Obstacle*> m_listOfOccluders; // Shouldnt I clear it when making this vector? Wont be any garbage in it?
 
 	friend class ListOfSources;
 };

@@ -21,7 +21,7 @@ private:
 
 	void* c_chunkStartPtr = nullptr;
 	inline void* chunkEndPtr() { return reinterpret_cast<char*>(c_chunkStartPtr) + (c_bytesPerObject * c_quantity); }
-	bool* m_isSlotFree; // table of booleans
+	bool* m_isSlotFree;
 
 	int getNextFreeSlotPosition();
 	void* getSlotPtr(const unsigned int position);

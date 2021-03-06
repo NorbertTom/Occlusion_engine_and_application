@@ -65,25 +65,15 @@ void SoundSource::setIsOccluded(bool isOccluded)
 void SoundSource::addOccluder(Obstacle* occluder)
 {
 	setIsOccluded(true);
-//	m_listOfOccluders.push_back(occluder);
 }
 
 void SoundSource::clearOccluders()
 {
-/*	if (m_listOfOccluders.size() > 0)
-	{
-		m_listOfOccluders.clear();
-	}
-*/}
+}
 
 void SoundSource::printOccluders() const
 {
-/*	const int nrOfOccluders = m_listOfOccluders.size();
-	for (int i = 0; i < nrOfOccluders; i++)
-	{
-		std::cout << "Occluder nr " << i << " of " << nrOfOccluders << " Id is: " << m_listOfOccluders[i]->getId();
-	}
-*/}
+}
 
 bool SoundSource::operator== (SoundSource& const otherSource) const
 {

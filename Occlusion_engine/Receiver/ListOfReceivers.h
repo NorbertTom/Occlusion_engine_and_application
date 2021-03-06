@@ -38,4 +38,3 @@ private:
 };
 
 extern SOUND_API ListOfReceivers* listOfReceiversPtr;
-//extern NorMemoryPoolChunk* receiversMemoryPool;

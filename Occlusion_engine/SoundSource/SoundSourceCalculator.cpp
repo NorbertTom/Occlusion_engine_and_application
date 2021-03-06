@@ -127,11 +127,11 @@ bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacl
 	float obstacleY2 = obstacPtr->getPosY2();
 
 
-	if ((receiverX - sourceX) < 0.01 && (receiverX - sourceX) > -0.01) // source i listener pionowe
+	if ((receiverX - sourceX) < 0.01 && (receiverX - sourceX) > -0.01) // source & listener perpendicular
 	{
 		float xIntersection = (receiverX + sourceX) / 2;
 
-		if ((obstacleX1 - obstacleX2) < 0.01 && (obstacleX1 - obstacleX2) > -0.01) // obstacle pionowe
+		if ((obstacleX1 - obstacleX2) < 0.01 && (obstacleX1 - obstacleX2) > -0.01) // obstacle perpendicular
 		{
 			float xIntersection2 = (obstacleX1 + obstacleX2) / 2;
 			if ((xIntersection2 - xIntersection) < 0.01 && (xIntersection2 - xIntersection) > -0.01)
@@ -167,7 +167,7 @@ bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacl
 				return false;
 		}
 	}
-	else if ((obstacleX1 - obstacleX2) < 0.01 && (obstacleX1 - obstacleX2) > -0.01)  // obstacle pionowe
+	else if ((obstacleX1 - obstacleX2) < 0.01 && (obstacleX1 - obstacleX2) > -0.01)  // obstacle perpendicular
 	{
 		float xIntersection = (obstacleX1 + obstacleX2) / 2;
 		float xmin, xmax;
@@ -187,7 +187,7 @@ bool SoundSourceCalculator::IsOccludedByObstacle(SoundSource* sourcePtr, Obstacl
 			return false;
 	}
 
-	else // nic nie jest pionowe
+	else // nothing is perpendicular
 	{
 		BasicMath::Line sourceRaycast = raycast(sourcePtr, activeReceiverPtr);
 		BasicMath::Line obstacleLine = obstacPtr->ObstacleLine();

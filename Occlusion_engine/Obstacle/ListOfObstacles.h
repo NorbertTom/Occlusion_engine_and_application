@@ -35,4 +35,3 @@ private:
 };
 
 extern SOUND_API ListOfObstacles* listOfObstaclesPtr;
-//extern NorMemoryPoolChunk* obstaclesMemoryPool;

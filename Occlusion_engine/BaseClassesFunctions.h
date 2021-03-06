@@ -19,7 +19,6 @@ namespace BasicMath {
 		void setPosX(float newX);
 		void setPosY(float newY);
 
-	//protected:
 		Point();
 		Point(float X, float Y);
 
@@ -43,7 +42,6 @@ namespace BasicMath {
 		void setPosX2(float newX2);
 		void setPosY2(float newY2);
 
-	//protected:
 		TwoPoints();
 		TwoPoints(float X1, float Y1, float X2, float Y2);
 
