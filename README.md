@@ -25,6 +25,7 @@ affects attenuation and occlusion.
 User can save the current state of the program and load it whenever they want. Data is stored in a binary file.
 
 ##### Memory
+![alt text](https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Memory_window.jpg "Memory window")
 If using NorMemoryPool (more details in <i>Implementation details</i> section)
 information regarding available and in-use memory is displayed.
 
@@ -33,7 +34,7 @@ Objects can be added, deleted or edited using GUI. All objects' values can be ch
 by the occlusion engine.
 
 ###### Sound Sources
-[img of sound sources edit window]
+![alt text](https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/SoundSources_window.jpg "Sound Sources window")
 * <i>x</i> and <i>y</i> are coordinates of the source. [m]
 * <i>Lwa</i> is a power level of the source. During first iterations of the program it was meant to play a role in
 attenuation calculations, but the idea was abandoned. Value stayed in the engine as a number that describes the source. [dbA]
@@ -43,12 +44,12 @@ and receiver.
 * <i>AttenuationType</i> can be set to PointSource, LineSource or NoAttenuation; it describes how much distance affects source's attenuation.
 
 ###### Obstacles
-[img of obstacles edit window]
+![alt text](https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg "Obstacles window")
 * <i>x1</i>, <i>y1</i>, <i>x2</i> and <i>y2</i> are coordinates of two points between which the obstacle exists. [m]
 * <i>dampening</i> is the value by which sound source gets attenuated if the obstacle is in the way of sound wave. [dB]
 
 ###### Receivers
-[img of receivers edit window]
+![alt text](https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Receivers_window.jpg "Receivers window")
 * <i>x</i> and <i>y</i> are coordinates of the receiver [m]
 * <i>isActive</i> determines if chosen receiver should be set to active. Please note that one receiver has to be active at any time.
 
