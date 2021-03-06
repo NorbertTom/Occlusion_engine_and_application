@@ -37,10 +37,9 @@ by the occlusion engine.
 ###### Sound Sources
 <img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/SoundSources_window.jpg" alt="Sound sources Window" width = "700" ><br>
 
-* <i>x</i> and <i>y</i> are coordinates of the source. [m]
-* <i>Lwa</i> is a power level of the source. During first iterations of the program it was meant to play a role in
-attenuation calculations, but the idea was abandoned. Value stayed in the engine as a number that describes the source. [dbA]
-* <i>maxDistance</i> is a maximum distance for which attenuation is calculated. [m]
+* <i>x</i> and <i>y</i> are coordinates of the source.
+* <i>Lwa</i> is a power level of the source. Value describes the source and is not taken into account during calculations.
+* <i>maxDistance</i> is a maximum distance for which attenuation is calculated.
 * <i>isOccludable</i> determines if current attenuation should take into account any obstacles that are placed between sound source
 and receiver.
 * <i>AttenuationType</i> can be set to PointSource, LineSource or NoAttenuation; it describes how much distance affects source's attenuation.
@@ -48,13 +47,13 @@ and receiver.
 ###### Obstacles
 <img src = "https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Obstacles_window.jpg" alt="Obstacles window" width="600"><br>
 
-* <i>x1</i>, <i>y1</i>, <i>x2</i> and <i>y2</i> are coordinates of two points between which the obstacle exists. [m]
-* <i>dampening</i> is the value by which sound source gets attenuated if the obstacle is in the way of sound wave. [dB]
+* <i>x1</i>, <i>y1</i>, <i>x2</i> and <i>y2</i> are coordinates of two points between which the obstacle exists.
+* <i>dampening</i> is the value by which sound source gets attenuated if the obstacle is in the way of sound wave.
 
 ###### Receivers
 <img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Receivers_window.jpg" alt="Receivers window" width="400"><br>
 
-* <i>x</i> and <i>y</i> are coordinates of the receiver [m]
+* <i>x</i> and <i>y</i> are coordinates of the receiver.
 * <i>isActive</i> determines if chosen receiver should be set to active. Please note that one receiver has to be active at any time.
 
 ## Implementation details
