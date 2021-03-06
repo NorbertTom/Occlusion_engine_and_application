@@ -4,7 +4,7 @@
 based on the source's characteristics, distance between them and occlusion by any <b>obstacles</b> on the way in two-dimensional space.<br>
 Below you can find information regarding program features from a user perspective followed by some code implementation details.
 
-<img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Main_window.jpg" alt="Main window" width="500"><br>
+<img src="https://github.com/NorbertTom/Occlusion_engine_and_application/raw/readmeUpdate/readme_imgs/Main_window.jpg" alt="Main window" width="700"><br>
 
 GUI made using <a href="https://www.wxwidgets.org/">wxWidgets</a>.
 
