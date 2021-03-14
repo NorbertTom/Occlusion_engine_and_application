@@ -86,7 +86,8 @@ in <b>SoundEngineInitializer.cpp</b>. Logs are saved to disk after every launch 
 
 ### What could have been done better
 * Tests could have been developed from the beginning together with the program.
-They would have been more robust and would have helped to keep some methods simpler than they are.
+They would have been more robust and would have helped to keep some methods simpler than they are.<br>
+They should also have been kept away from the engine code (as a separate executable) instead of being embedded as a static library.
 * Objects’ lists could have been constructed differently so that singletons wouldn’t need to exist.
 I’m aware that singleton is a bad practice, but I couldn’t think of anything better at the time of writing the <i>Occlusion Engine</i>.
 I tried using template class, but it resulted in more complicated code, so that I got back to the idea of using three singletons.
